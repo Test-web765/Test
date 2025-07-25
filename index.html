@@ -1,12 +1,112 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Meine erste Website</title>
+  <title>Cursor Canvas Effekt</title>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="style.css">
+  <style>
+    html, body {
+      padding: 0;
+      margin: 0;
+      overscroll-behavior: none;
+      background-color: #000;
+      overflow: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+      margin-left: 1em;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .icon {
+      display: inline-block;
+      margin: 0 1em;
+    }
+  </style>
 </head>
 <body>
-  <h1>Hallo Welt!</h1>
-  <p>Diese Seite läuft über GitHub Pages!</p>
+  <canvas id="canvas"></canvas>
+
+  <script>
+    let mouseMoved = false;
+    const pointer = {
+      x: .5 * window.innerWidth,
+      y: .5 * window.innerHeight
+    };
+
+    const params = {
+      pointsNumber: 40,
+      widthFactor: .3,
+      mouseThreshold: .6,
+      spring: .4,
+      friction: .5
+    };
+
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    let points = [];
+
+    setupCanvas();
+    update();
+
+    window.addEventListener("resize", setupCanvas);
+    window.addEventListener("mousemove", e => {
+      mouseMoved = true;
+      pointer.x = e.clientX;
+      pointer.y = e.clientY;
+    });
+
+    function setupCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      points = [];
+
+      for (let i = 0; i < params.pointsNumber; i++) {
+        points.push({
+          x: pointer.x,
+          y: pointer.y,
+          dx: 0,
+          dy: 0
+        });
+      }
+    }
+
+    function update() {
+      if (!mouseMoved) {
+        requestAnimationFrame(update);
+        return;
+      }
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      points.forEach((p, i) => {
+        const prev = i === 0 ? pointer : points[i - 1];
+        const spring = i === 0 ? 0.4 : params.spring;
+        p.dx += (prev.x - p.x) * spring;
+        p.dy += (prev.y - p.y) * spring;
+        p.dx *= params.friction;
+        p.dy *= params.friction;
+        p.x += p.dx;
+        p.y += p.dy;
+      });
+
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+      for (let i = 1; i < points.length - 2; i++) {
+        const xc = (points[i].x + points[i + 1].x) / 2;
+        const yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+      }
+
+      ctx.strokeStyle = "hsl(" + (pointer.x / window.innerWidth * 360) + ", 100%, 70%)";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      requestAnimationFrame(update);
+    }
+  </script>
 </body>
 </html>
