@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Orbit Cursor Effect</title>
+  <title>Orbit Cursor Effect (Smooth Follow)</title>
   <style>
     html, body {
       margin: 0;
@@ -25,27 +25,27 @@
   let width = canvas.width = window.innerWidth;
   let height = canvas.height = window.innerHeight;
 
-  const center = { x: width / 2, y: height / 2 };
-  let pointer = { x: center.x, y: center.y };
+  let target = { x: width / 2, y: height / 2 };
+  let center = { x: width / 2, y: height / 2 };
 
-  const orbitCount = 25;
-  const orbitRadius = 50;
-  const orbitSpeed = 0.01;
+  const orbitCount = 8;
+  const orbitSpeed = 0.015;
   const orbits = [];
 
   for (let i = 0; i < orbitCount; i++) {
     const angle = (i / orbitCount) * Math.PI * 2;
-    const hue = (i * 37) % 360;
+    const hue = (i * 45) % 360;
+    const radius = 30 + Math.random() * 70;
     orbits.push({
       angle: angle,
-      radius: orbitRadius,
+      radius: radius,
       color: `hsl(${hue}, 80%, 60%)`
     });
   }
 
   window.addEventListener("mousemove", e => {
-    pointer.x = e.clientX;
-    pointer.y = e.clientY;
+    target.x = e.clientX;
+    target.y = e.clientY;
   });
 
   window.addEventListener("resize", () => {
@@ -54,13 +54,17 @@
   });
 
   function animate() {
-    ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
+    ctx.fillRect(0, 0, width, height);
 
-    orbits.forEach((orbit, i) => {
+    center.x += (target.x - center.x) * 0.08;
+    center.y += (target.y - center.y) * 0.08;
+
+    orbits.forEach((orbit) => {
       orbit.angle += orbitSpeed;
 
-      const x = pointer.x + Math.cos(orbit.angle) * orbit.radius;
-      const y = pointer.y + Math.sin(orbit.angle) * orbit.radius;
+      const x = center.x + Math.cos(orbit.angle) * orbit.radius;
+      const y = center.y + Math.sin(orbit.angle) * orbit.radius;
 
       ctx.beginPath();
       ctx.arc(x, y, 5, 0, Math.PI * 2);
@@ -75,4 +79,3 @@
 </script>
 </body>
 </html>
-
