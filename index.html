@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Cursor Canvas Trail</title>
+  <title>Orbit Cursor Effect</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      overflow: hidden;
       background: #000;
+      overflow: hidden;
     }
     canvas {
       display: block;
@@ -25,17 +25,22 @@
   let width = canvas.width = window.innerWidth;
   let height = canvas.height = window.innerHeight;
 
-  const pointer = { x: width / 2, y: height / 2 };
+  const center = { x: width / 2, y: height / 2 };
+  let pointer = { x: center.x, y: center.y };
 
-  const lineCount = 25;
-  const lines = [];
-  const colors = [];
+  const orbitCount = 25;
+  const orbitRadius = 50;
+  const orbitSpeed = 0.01;
+  const orbits = [];
 
-  // Farben erzeugen (unterschiedlich, aber konstant)
-  for (let i = 0; i < lineCount; i++) {
-    lines.push({ x: pointer.x, y: pointer.y, dx: 0, dy: 0 });
+  for (let i = 0; i < orbitCount; i++) {
+    const angle = (i / orbitCount) * Math.PI * 2;
     const hue = (i * 37) % 360;
-    colors.push(`hsl(${hue}, 80%, 60%)`);
+    orbits.push({
+      angle: angle,
+      radius: orbitRadius,
+      color: `hsl(${hue}, 80%, 60%)`
+    });
   }
 
   window.addEventListener("mousemove", e => {
@@ -51,27 +56,17 @@
   function animate() {
     ctx.clearRect(0, 0, width, height);
 
-    for (let i = 0; i < lines.length; i++) {
-      const prev = i === 0 ? pointer : lines[i - 1];
-      const p = lines[i];
+    orbits.forEach((orbit, i) => {
+      orbit.angle += orbitSpeed;
 
-      // Langsame, weiche Bewegung
-      p.dx += (prev.x - p.x) * 0.05;
-      p.dy += (prev.y - p.y) * 0.05;
-      p.dx *= 0.6;
-      p.dy *= 0.6;
-      p.x += p.dx;
-      p.y += p.dy;
-    }
+      const x = pointer.x + Math.cos(orbit.angle) * orbit.radius;
+      const y = pointer.y + Math.sin(orbit.angle) * orbit.radius;
 
-    for (let i = 0; i < lines.length - 1; i++) {
       ctx.beginPath();
-      ctx.strokeStyle = colors[i];
-      ctx.lineWidth = 4;
-      ctx.moveTo(lines[i].x, lines[i].y);
-      ctx.lineTo(lines[i + 1].x, lines[i + 1].y);
-      ctx.stroke();
-    }
+      ctx.arc(x, y, 5, 0, Math.PI * 2);
+      ctx.fillStyle = orbit.color;
+      ctx.fill();
+    });
 
     requestAnimationFrame(animate);
   }
@@ -80,3 +75,4 @@
 </script>
 </body>
 </html>
+
