@@ -1,123 +1,69 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Über mich</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      overflow: hidden;
-      background: black;
-      color: white;
-    }
-
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 0;
-    }
-
-    .content {
-      position: relative;
-      z-index: 1;
-      padding: 60px 20px;
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    h1 {
-      margin-bottom: 10px;
-      font-size: 32px;
-    }
-
-    p {
-      font-size: 20px;
-      line-height: 1.6;
-    }
-
-    .back-link {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 2;
-      color: #aaa;
-      font-size: 14px;
-      text-decoration: none;
-    }
-
-    .back-link:hover {
-      color: #fff;
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Über uns – Deine Firma</title>
+  <meta name="description" content="Lerne das Team und die Werte von Deine Firma kennen." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="js/main.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+  <header class="site-header" data-header>
+    <div class="container nav">
+      <a href="index.html" class="brand"><img src="assets/images/logo.png" alt="" class="logo"><span>Deine&nbsp;Firma</span></a>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-menu">☰</button>
+      <nav id="site-menu" class="menu" data-mobile-menu>
+        <a href="index.html">Start</a>
+        <a href="about.html">Über uns</a>
+        <a href="index.html#leistungen">Leistungen</a>
+        <a href="kontakt.html" class="btn btn-sm">Kontakt</a>
+      </nav>
+    </div>
+  </header>
 
-<canvas id="bgCanvas"></canvas>
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <h1>Über uns</h1>
+        <p>Wir sind ein kleines Team aus Designer:innen und Entwickler:innen – pragmatisch, schnell, zuverlässig.</p>
+      </div>
+    </section>
 
-<a href="index.html" class="back-link">← Zurück zur Startseite</a>
+    <section class="section">
+      <div class="container grid-2">
+        <div>
+          <h2>Unsere Mission</h2>
+          <p>Wir bauen Websites, die Unternehmen wirklich voranbringen: klare Botschaften, messbare Ergebnisse und ein Setup, das wächst, wenn du wächst.</p>
+          <ul class="ticks">
+            <li>Transparente Prozesse</li>
+            <li>Kurze Feedback-Schleifen</li>
+            <li>Langfristige Partnerschaften</li>
+          </ul>
+        </div>
+        <div>
+          <img src="assets/images/team.jpg" alt="Unser Team bei der Arbeit">
+        </div>
+      </div>
+    </section>
 
-<div class="content">
-  <h1>Über mich</h1>
-  <p>
-    Hallo! Ich bin Ismail Karabulut, Student der Angewandten Informatik mit Begeisterung für Webentwicklung
-    und kreative technische Lösungen. Diese Seite ist ein kleiner Prototyp, um zu zeigen, was mit einfachen Mitteln möglich ist –
-    von Animationen bis zu modernen Benutzeroberflächen.
-  </p>
-</div>
+    <section class="section section-muted">
+      <div class="container">
+        <h2>Werte</h2>
+        <div class="cards">
+          <article class="card"><h3>Qualität</h3><p>Wir liefern Code, den man gern übernimmt.</p></article>
+          <article class="card"><h3>Performance</h3><p>Schnelle Seiten bedeuten bessere Conversions.</p></article>
+          <article class="card"><h3>Security</h3><p>Best Practices und regelmäßige Updates.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
 
-<script>
-  const canvas = document.getElementById("bgCanvas");
-  const ctx = canvas.getContext("2d");
-
-  let width = canvas.width = window.innerWidth;
-  let height = canvas.height = window.innerHeight;
-
-  const stars = [];
-  const starCount = 100;
-
-  for (let i = 0; i < starCount; i++) {
-    stars.push({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      radius: Math.random() * 1.5 + 0.5,
-      dx: (Math.random() - 0.5) * 0.5,
-      dy: (Math.random() - 0.5) * 0.5
-    });
-  }
-
-  window.addEventListener("resize", () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  });
-
-  function animate() {
-    ctx.fillStyle = "rgba(0, 0, 0, 1)";
-    ctx.fillRect(0, 0, width, height);
-
-    for (let star of stars) {
-      star.x += star.dx;
-      star.y += star.dy;
-
-      // Wrap around edges
-      if (star.x < 0) star.x = width;
-      if (star.x > width) star.x = 0;
-      if (star.y < 0) star.y = height;
-      if (star.y > height) star.y = 0;
-
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-      ctx.fillStyle = "white";
-      ctx.fill();
-    }
-
-    requestAnimationFrame(animate);
-  }
-
-  animate();
-</script>
+  <footer class="site-footer">
+    <div class="container legal"><small>© <span id="year"></span> Deine Firma</small></div>
+  </footer>
 </body>
 </html>
