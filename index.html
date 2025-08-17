@@ -1,139 +1,202 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Orbit Cursor Demo</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: #000;
-      overflow: hidden;
-      font-family: sans-serif;
-    }
-
-    canvas {
-      display: block;
-      position: absolute;
-      z-index: 0;
-    }
-
-    nav {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 1;
-    }
-
-    nav a {
-      color: white;
-      margin-right: 1em;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 16px;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    .btn-container {
-      position: fixed;
-      bottom: 30px;
-      left: 30px;
-      z-index: 1;
-    }
-
-    button {
-      padding: 12px 24px;
-      font-size: 16px;
-      background: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #45a049;
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Deine Firma – Webdesign & Development</title>
+  <meta name="description" content="Professionelle Websites, die konvertieren: Design, Entwicklung, SEO und Pflege aus einer Hand." />
+  <link rel="canonical" href="https://example.com/" />
+  <meta property="og:title" content="Deine Firma – Webdesign & Development" />
+  <meta property="og:description" content="Professionelle Websites, die konvertieren." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://example.com/" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="js/main.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
-<!-- Orbit Canvas -->
-<canvas id="canvas"></canvas>
+  <header class="site-header" data-header>
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="Startseite">
+        <img src="assets/images/logo.png" alt="" class="logo" />
+        <span>Deine&nbsp;Firma</span>
+      </a>
 
-<!-- Navigation -->
-<nav>
-  <a href="about.html">Über mich</a>
-  <a href="kontakt.html">Kontakt</a>
-</nav>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Menü öffnen">
+        ☰
+      </button>
 
-<!-- Button -->
-<div class="btn-container">
-  <button onclick="alert('Danke, dass du dir das ansiehst!')">Klick mich</button>
-</div>
+      <nav id="site-menu" class="menu" data-mobile-menu>
+        <a href="index.html">Start</a>
+        <a href="about.html">Über uns</a>
+        <a href="#leistungen">Leistungen</a>
+        <a href="#referenzen">Referenzen</a>
+        <a href="#konfigurator">Konfigurator</a>
+        <a href="kontakt.html" class="btn btn-sm">Kontakt</a>
+      </nav>
+    </div>
+  </header>
 
-<!-- Orbit Script -->
-<script>
-  const canvas = document.getElementById("canvas");
-  const ctx = canvas.getContext("2d");
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <h1>Websites, die <span class="accent">verkaufen</span>.</h1>
+          <p>Wir planen, designen und entwickeln performante Websites – messbar schneller, sicherer und suchmaschinenfreundlich.</p>
+          <div class="hero-actions">
+            <a href="#konfigurator" class="btn">Preis kalkulieren</a>
+            <a href="kontakt.html" class="btn btn-ghost">Kostenloses Erstgespräch</a>
+          </div>
+          <ul class="ticks">
+            <li>Schnelle Ladezeiten</li>
+            <li>Sauberes SEO-Fundament</li>
+            <li>CMS auf Wunsch</li>
+          </ul>
+        </div>
+        <div class="hero-media">
+          <!-- Ersetze hero.jpg durch dein Bild -->
+          <img src="assets/images/hero.jpg" alt="Moderne Website auf Laptop und Handy" />
+        </div>
+      </div>
+    </section>
 
-  let width = canvas.width = window.innerWidth;
-  let height = canvas.height = window.innerHeight;
+    <!-- Leistungen -->
+    <section id="leistungen" class="section">
+      <div class="container">
+        <h2>Unsere Leistungen</h2>
+        <div class="cards">
+          <article class="card">
+            <h3>Webdesign</h3>
+            <p>Individuelles, barrierearmes Design mit Fokus auf Conversion und Markenwirkung.</p>
+          </article>
+          <article class="card">
+            <h3>Entwicklung</h3>
+            <p>Sauberes HTML/CSS/JS, responsive, DSGVO-ready. Anbindung an CMS möglich.</p>
+          </article>
+          <article class="card">
+            <h3>SEO & Performance</h3>
+            <p>Technisches SEO, strukturierte Daten, Bild-Optimierung und Caching-Strategie.</p>
+          </article>
+          <article class="card">
+            <h3>Support & Wartung</h3>
+            <p>Updates, Monitoring und Backups – auf Wunsch als Servicepaket.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-  let target = { x: width / 2, y: height / 2 };
-  let center = { x: width / 2, y: height / 2 };
+    <!-- Referenzen -->
+    <section id="referenzen" class="section section-muted">
+      <div class="container">
+        <h2>Ausgewählte Projekte</h2>
+        <div class="grid-3">
+          <figure class="work">
+            <img src="assets/images/ref1.jpg" alt="Projekt 1" />
+            <figcaption>Restaurant Website – 35% mehr Reservierungen</figcaption>
+          </figure>
+          <figure class="work">
+            <img src="assets/images/ref2.jpg" alt="Projekt 2" />
+            <figcaption>Handwerksbetrieb – schlanke Angebotsanfragen</figcaption>
+          </figure>
+          <figure class="work">
+            <img src="assets/images/ref3.jpg" alt="Projekt 3" />
+            <figcaption>Beratungsfirma – Thought-Leadership Blog</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
 
-  const orbitCount = 8;
-  const orbitSpeed = 0.015;
-  const orbits = [];
+    <!-- Konfigurator (Preisrechner) -->
+    <section id="konfigurator" class="section">
+      <div class="container">
+        <h2>Projekt-Konfigurator</h2>
+        <p class="muted">Wähle die Bausteine aus – der Richtpreis aktualisiert sich live.</p>
 
-  for (let i = 0; i < orbitCount; i++) {
-    const angle = (i / orbitCount) * Math.PI * 2;
-    const hue = (i * 45) % 360;
-    const radius = 30 + Math.random() * 70;
-    orbits.push({
-      angle: angle,
-      radius: radius,
-      color: `hsl(${hue}, 80%, 60%)`
-    });
-  }
+        <form class="config" id="config-form" autocomplete="off">
+          <div class="config-grid">
+            <label>Seitenanzahl
+              <input type="number" id="pages" min="1" max="50" value="5" />
+            </label>
 
-  window.addEventListener("mousemove", e => {
-    target.x = e.clientX;
-    target.y = e.clientY;
-  });
+            <label>Bilder (Stück)
+              <input type="number" id="bilder" min="0" max="500" value="20" />
+            </label>
 
-  window.addEventListener("resize", () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  });
+            <label>Animationen (Stück)
+              <input type="number" id="animationen" min="0" max="20" value="2" />
+            </label>
 
-  function animate() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
-    ctx.fillRect(0, 0, width, height);
+            <label class="check">
+              <input type="checkbox" id="cms" />
+              <span>CMS-Integration (z. B. WordPress oder Headless)</span>
+            </label>
 
-    center.x += (target.x - center.x) * 0.08;
-    center.y += (target.y - center.y) * 0.08;
+            <label class="check">
+              <input type="checkbox" id="seo" />
+              <span>SEO-Boost (OnPage & technische Maßnahmen)</span>
+            </label>
 
-    orbits.forEach((orbit) => {
-      orbit.angle += orbitSpeed;
+            <fieldset class="hosting">
+              <legend>Hosting & Wartung</legend>
+              <label><input type="radio" name="hosting" value="none" checked /> Kein Hosting</label>
+              <label><input type="radio" name="hosting" value="basic" /> Basic (monatlich)</label>
+              <label><input type="radio" name="hosting" value="pro" /> Pro (monatlich)</label>
+            </fieldset>
+          </div>
 
-      const x = center.x + Math.cos(orbit.angle) * orbit.radius;
-      const y = center.y + Math.sin(orbit.angle) * orbit.radius;
+          <div class="summary" id="summary">
+            <h3>Dein Richtpreis</h3>
+            <div class="sum-row"><span>Einmalige Umsetzung</span><strong id="price-einmalig">–</strong></div>
+            <div class="sum-row"><span>Monatlich (falls Hosting)</span><strong id="price-monatlich">–</strong></div>
+            <p class="muted small">*Alle Preise sind unverbindliche Richtwerte zzgl. USt.</p>
+            <a href="kontakt.html" class="btn">Unverbindliches Angebot anfragen</a>
+          </div>
+        </form>
+      </div>
+    </section>
 
-      ctx.beginPath();
-      ctx.arc(x, y, 5, 0, Math.PI * 2);
-      ctx.fillStyle = orbit.color;
-      ctx.fill();
-    });
+    <!-- CTA -->
+    <section class="cta">
+      <div class="container cta-box">
+        <h2>Bereit, loszulegen?</h2>
+        <p>Wir zeigen dir in 15 Minuten, wie deine neue Website aussehen kann.</p>
+        <a href="kontakt.html" class="btn btn-light">Jetzt Gespräch buchen</a>
+      </div>
+    </section>
+  </main>
 
-    requestAnimationFrame(animate);
-  }
-
-  animate();
-</script>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand brand--footer">
+          <img src="assets/images/logo.png" alt="" class="logo" />
+          <span>Deine&nbsp;Firma</span>
+        </div>
+        <p class="muted">Webdesign & Development aus Duisburg.</p>
+      </div>
+      <nav class="footer-nav">
+        <a href="index.html">Start</a>
+        <a href="about.html">Über uns</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="#leistungen">Leistungen</a>
+      </nav>
+      <div class="footer-social">
+        <a href="#" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.7v2.2h.1c.7-1.3 2.5-2.7 5.1-2.7 5.5 0 6.5 3.6 6.5 8.3V24h-5V16c0-1.9 0-4.3-2.7-4.3-2.7 0-3.1 2.1-3.1 4.2V24h-5V8z"/></svg>
+        </a>
+        <a href="#" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.7.5.9 5.3.9 11.6c0 4.9 3.2 9.1 7.7 10.6.6.1.8-.3.8-.6v-2.2c-3.1.7-3.8-1.3-3.8-1.3-.5-1.1-1.2-1.4-1.2-1.4-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1.6-1 .6-1-1.8-.2-3.6-.9-3.6-4 0-.9.3-1.6.9-2.2-.1-.2-.4-1.1.1-2.2 0 0 .8-.3 2.4.9.7-.2 1.5-.3 2.3-.3s1.6.1 2.3.3c1.6-1.2 2.4-.9 2.4-.9.5 1.1.2 2 .1 2.2.6.6.9 1.3.9 2.2 0 3.2-1.9 3.8-3.6 4 0 .3.5 1.1.6 2.2v3.2c0 .3.2.7.8.6 4.5-1.5 7.7-5.7 7.7-10.6C23.1 5.3 18.3.5 12 .5z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="container legal">
+      <small>© <span id="year"></span> Deine Firma – Alle Rechte vorbehalten.</small>
+    </div>
+  </footer>
 </body>
 </html>
+
