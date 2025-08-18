@@ -152,3 +152,39 @@ p{margin:0 0 1rem}
 .legal{padding:12px 0; text-align:center; color:var(--muted); border-top:1px solid var(--border)}
 .footer-social svg{width:22px; height:22px; fill:currentColor; opacity:.9}
 .footer-social a:hover svg{opacity:1}
+
+/* ===== Wizard ===== */
+.wizard{display:grid; gap:18px}
+.wizard-summary{
+  position:sticky; top:82px; z-index:5;
+  display:flex; align-items:center; justify-content:space-between;
+  background:var(--bg-soft); border:1px solid var(--border);
+  border-radius:16px; padding:14px 16px; box-shadow: var(--shadow);
+}
+.wizard-progress{font-weight:700}
+.wizard-price{display:flex; align-items:baseline; gap:12px}
+.wizard-price strong{font-size:1.25rem}
+
+.wizard-form{display:grid; gap:18px}
+.step{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px}
+.step[hidden]{display:none}
+
+.radio-list, .check-list{display:grid; gap:10px; margin-top:10px}
+.has-other{display:grid; gap:8px}
+.other-input{
+  display:none; background:var(--bg); color:var(--text); border:1px solid var(--border);
+  border-radius:10px; padding:10px 12px; font:inherit
+}
+.has-other input[type="radio"]:checked ~ .other-input,
+.has-other input[type="checkbox"]:checked ~ .other-input{display:block}
+
+.upload-row{margin:8px 0 4px}
+
+.wizard-controls{display:flex; gap:10px; align-items:center}
+#wiz-step, #wiz-total{font-variant-numeric: tabular-nums}
+
+/* Better tap targets on mobile */
+@media (max-width: 760px){
+  .radio-list label, .check-list label{padding:8px 10px; border:1px dashed var(--border); border-radius:12px}
+}
+
