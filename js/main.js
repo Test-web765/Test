@@ -93,3 +93,155 @@ if (contactForm){
     window.location.href = `mailto:info@deinefirma.de?subject=${subject}&body=${body}`;
   });
 }
+
+/* ================== WIZARD (Bedarfsanalyse) ================== */
+(function(){
+  const form = document.getElementById('bedarf-form');
+  if (!form) return;
+
+  const steps = Array.from(form.querySelectorAll('.step'));
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const submitBtn = document.getElementById('submitBtn');
+  const stepEl = document.getElementById('wiz-step');
+  const totalEl = document.getElementById('wiz-total');
+  const priceEl = document.getElementById('wiz-price');
+
+  let i = 0;
+  totalEl.textContent = String(steps.length);
+
+  // Preislogik – bitte auf eure Raten anpassen
+  const PRICING_WIZ = {
+    base: 500,                                     // Grundsetup
+    ziel: { 'Praesenz/Branding': 0, 'Leadgewinnung': 300, 'Online-Verkauf': 1200, 'Sonstiges': 0 },
+    aufgaben: { 'Kaufen': 1000, 'Kontaktformular': 150, 'Newsletter': 250, 'Informationen': 0, 'Andere': 0 },
+    branding: { 'Ja': 0, 'Teilweise': 150, 'Nein': 250 },
+    funktionen: { 'Kontaktformular': 150, 'Buchungssystem': 600, 'Shop': 1500, 'Blog': 400, 'Mehrsprachigkeit': 400, 'Login': 900, 'Andere': 200 },
+    sprachen: { 'Nur Deutsch': 0, 'Deutsch + Englisch': 300, 'Weitere': 400 },
+    hosting: { 'Ja': 0, 'Teilweise': 60, 'Nein': 120 }
+  };
+
+  function euro(n){ return new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR'}).format(n); }
+
+  function collectState(){
+    const fd = new FormData(form);
+    const v = x => fd.get(x);
+
+    const state = {
+      hauptziel: v('hauptziel') || '',
+      aufgaben: fd.getAll('aufgaben'),
+      branding: v('branding') || '',
+      funktionen: fd.getAll('funktionen'),
+      sprachen: v('sprachen') || '',
+      hosting: v('hosting') || ''
+    };
+    return state;
+  }
+
+  function calcPrice(){
+    const s = collectState();
+    let total = PRICING_WIZ.base;
+
+    if (s.hauptziel) total += PRICING_WIZ.ziel[s.hauptziel] ?? 0;
+    s.aufgaben.forEach(a => total += PRICING_WIZ.aufgaben[a] ?? 0);
+    if (s.branding) total += PRICING_WIZ.branding[s.branding] ?? 0;
+    s.funktionen.forEach(f => total += PRICING_WIZ.funktionen[f] ?? 0);
+    if (s.sprachen) total += PRICING_WIZ.sprachen[s.sprachen] ?? 0;
+    if (s.hosting) total += PRICING_WIZ.hosting[s.hosting] ?? 0;
+
+    priceEl.textContent = euro(total);
+  }
+
+  function showStep(idx){
+    steps.forEach((s, n)=> s.hidden = n !== idx);
+    stepEl.textContent = String(idx + 1);
+    prevBtn.disabled = idx === 0;
+    nextBtn.hidden = idx === steps.length - 1;
+    submitBtn.hidden = idx !== steps.length - 1;
+    validateStep();   // set Next enabled/disabled
+    calcPrice();      // update price
+    window.scrollTo({top: document.querySelector('.wizard').offsetTop - 20, behavior: 'smooth'});
+  }
+
+  function validateStep(){
+    const step = steps[i];
+    const required = step.hasAttribute('data-required');
+    if (!required){ nextBtn.disabled = false; return; }
+
+    // A step counts as valid if all required inputs/textarea in it are non-empty/checked
+    const inputs = Array.from(step.querySelectorAll('input, textarea, select'));
+    let ok = true;
+    inputs.forEach(el=>{
+      if (el.type === 'radio'){
+        const name = el.name;
+        const group = step.querySelectorAll(`input[type="radio"][name="${name}"]`);
+        const any = Array.from(group).some(r=>r.checked);
+        if (!any) ok = false;
+      } else if (el.type === 'checkbox'){
+        // checkboxes rarely "required" here; ignore
+      } else if (el.tagName === 'TEXTAREA' || el.type === 'text' || el.type === 'email' || el.type === 'date'){
+        if (el.hasAttribute('required') && !el.value.trim()) ok = false;
+      }
+    });
+    nextBtn.disabled = !ok;
+  }
+
+  // Events
+  form.addEventListener('input', ()=>{ validateStep(); calcPrice(); });
+
+  nextBtn.addEventListener('click', ()=>{
+    if (nextBtn.disabled) return;
+    if (i < steps.length - 1) i++;
+    showStep(i);
+  });
+  prevBtn.addEventListener('click', ()=>{
+    if (i > 0) i--;
+    showStep(i);
+  });
+
+  // Submit -> mailto mit Zusammenfassung
+  form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const fd = new FormData(form);
+    const lines = [];
+    function line(k,v){ if(v && String(v).trim()) lines.push(`${k}: ${v}`); }
+    function list(k, arr){ if (arr && arr.length) lines.push(`${k}: ${arr.join(', ')}`); }
+
+    line('Kunde', fd.get('kunde_name'));
+    line('Projekt', fd.get('projekt_name'));
+    line('Telefon', fd.get('telefon'));
+    line('Mobile', fd.get('mobile'));
+    line('E-Mail', fd.get('email'));
+    line('Adresse', fd.get('adresse'));
+    lines.push('');
+    line('Zielgruppe', fd.get('zielgruppe'));
+    lines.push('');
+    line('Hauptziel', fd.get('hauptziel') === 'Sonstiges' ? fd.get('hauptziel_sonst') : fd.get('hauptziel'));
+    list('Aufgaben', fd.getAll('aufgaben')); line('Aufgaben (andere)', fd.get('aufgaben_sonst'));
+    lines.push('');
+    line('Branding', fd.get('branding'));
+    line('Branding-Details', fd.get('branding_beschr'));
+    line('Branding-Upload', fd.get('branding_upload') && fd.get('branding_upload').name);
+    list('Stil', fd.getAll('stil')); line('Stil (anders)', fd.get('stil_sonst'));
+    lines.push('');
+    list('Funktionen', fd.getAll('funktionen')); line('Funktionen (andere)', fd.get('funktionen_sonst'));
+    line('Sprachen', fd.get('sprachen') === 'Weitere' ? fd.get('sprachen_sonst') : fd.get('sprachen'));
+    lines.push('');
+    line('Betreuung', fd.get('betreuung') === 'Andere' ? fd.get('betreuung_sonst') : fd.get('betreuung'));
+    line('Hosting/Domain', fd.get('hosting'));
+    line('Hosting-Details', fd.get('hosting_anbieter') || fd.get('hosting_teilweise'));
+    lines.push('');
+    line('Go-Live', fd.get('golive'));
+    line('Budget', fd.get('budget') === 'Anders' ? fd.get('budget_sonst') : fd.get('budget'));
+    lines.push('');
+    line('Richtpreis (heute)', priceEl.textContent);
+
+    const subject = encodeURIComponent('Bedarfsanalyse – Neue Anfrage');
+    const body = encodeURIComponent(lines.join('\n'));
+    // TODO: Zieladresse anpassen
+    window.location.href = `mailto:info@creative4design.de?subject=${subject}&body=${body}`;
+  });
+
+  // Start
+  showStep(i);
+})();
