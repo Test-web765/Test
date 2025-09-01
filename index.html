@@ -3,54 +3,145 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Deine Firma – Webdesign & Development</title>
-  <meta name="description" content="Professionelle Websites, die konvertieren: Design, Entwicklung, SEO und Pflege aus einer Hand." />
-  <link rel="canonical" href="https://example.com/" />
-  <meta property="og:title" content="Deine Firma – Webdesign & Development" />
-  <meta property="og:description" content="Professionelle Websites, die konvertieren." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://example.com/" />
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <title>Creative4design – Webdesign & Preise</title>
+  <meta name="description" content="Moderne Websites mit Fokus auf Conversion & Performance. Preisübersicht Bronze/Silber/Gold, Live-Konfigurator & Kontakt." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0d12'/%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2353b1fd'/%3E%3Cstop offset='1' stop-color='%237ed2ff'/%3E%3C/linearGradient%3E%3Cpath d='M16 40 L32 14 L48 40 L38 40 L32 28 L26 40 Z' fill='url(%23g)'/%3E%3C/svg%3E" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="js/main.js" defer></script>
+  <style>
+    /* ===== Theme / Base ===== */
+    :root{
+      --bg:#0b0d12; --bg-soft:#10141d; --card:#111826; --border:#1e2533;
+      --text:#e8eef8; --muted:#a8b0c2; --accent:#53b1fd;
+      --radius:16px; --shadow:0 8px 30px rgba(0,0,0,.35);
+      --container:1100px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{ --bg:#fff; --bg-soft:#f6f8fb; --card:#fff; --border:#e5e9f2; --text:#0c1321; --muted:#5b6477; --shadow:0 8px 30px rgba(0,0,0,.08); }
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    img{max-width:100%;display:block;border-radius:16px}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--container);margin:0 auto;padding:0 20px}
+    .section{padding:72px 0}
+    .section-muted{background:var(--bg-soft)}
+    h1,h2,h3{line-height:1.2;margin:0 0 .5rem}
+    h1{font-size:clamp(2rem,2.5vw + 1rem,3.1rem)}
+    h2{font-size:clamp(1.5rem,1.2vw + .9rem,2rem);margin-bottom:1rem}
+    h3{font-size:1.15rem}
+    p{margin:0 0 1rem}
+    .muted{color:var(--muted)} .small{font-size:.9rem}
+
+    /* Buttons & layout bits */
+    .btn{background:var(--accent);color:#081019;padding:12px 16px;border-radius:12px;font-weight:700;display:inline-block;transition:transform .15s ease, box-shadow .2s ease}
+    .btn:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
+    .btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
+    .btn-light{background:#fff;color:#0b0d12}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media (max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}}
+    .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    @media (max-width:1100px){.cards{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:640px){.cards{grid-template-columns:1fr}}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;transition:transform .2s ease, box-shadow .25s ease}
+    .card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+    .ticks{list-style:none;padding:0;margin:.5rem 0 0}
+    .ticks li{position:relative;padding-left:26px;margin:6px 0}
+    .ticks li:before{content:"✓";position:absolute;left:0;top:0;color:var(--accent);font-weight:700}
+
+    /* Header / Nav */
+    .site-header{position:sticky;top:0;z-index:50;background:rgba(16,20,29,.6);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid var(--border)}
+    .site-header.is-scrolled{box-shadow:var(--shadow)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+    .brand-badge{width:28px;height:28px;display:grid;place-items:center;border-radius:8px;background:linear-gradient(180deg,var(--accent),#7ed2ff);color:#081019;font-weight:900}
+    .menu{display:flex;align-items:center;gap:18px}
+    .menu a:hover{color:var(--accent)}
+    .nav-toggle{display:none;background:transparent;border:1px solid var(--border);color:var(--text);border-radius:10px;padding:8px 10px}
+    @media (max-width:860px){
+      .nav-toggle{display:block}
+      .menu{position:fixed;inset:64px 0 auto 0;background:var(--bg);border-bottom:1px solid var(--border);flex-direction:column;gap:10px;padding:16px;transform:translateY(-120%);transition:transform .25s ease}
+      .menu.open{transform:translateY(0)}
+    }
+
+    /* Hero */
+    .hero{padding:64px 0 36px;background:
+      radial-gradient(800px 400px at 15% -10%, rgba(83,177,253,.25), transparent),
+      radial-gradient(700px 350px at 90% 10%, rgba(125,203,255,.15), transparent)}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
+    .hero .accent{color:var(--accent)}
+    .hero-actions{display:flex;gap:12px;margin:14px 0 8px}
+    @media (max-width:860px){.hero-grid{grid-template-columns:1fr}}
+
+    /* Konfigurator */
+    .config{display:grid;gap:18px}
+    .config-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;background:var(--card);border:1px solid var(--border);padding:18px;border-radius:16px}
+    .config input[type=number], .config select{background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:10px 12px;font:inherit}
+    .hosting{grid-column:span 3;border:1px dashed var(--border);padding:12px;border-radius:12px;display:flex;gap:14px;flex-wrap:wrap}
+    .summary{border:1px solid var(--border);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px;background:var(--bg-soft)}
+    .sum-row{display:flex;align-items:center;justify-content:space-between;font-weight:700}
+    @media (max-width:860px){.config-grid{grid-template-columns:1fr}.hosting{grid-column:auto}}
+
+    /* Pricing Compare */
+    .pricing-wrap{overflow-x:auto}
+    .pricing-compare{
+      min-width: 780px;
+      display:grid; grid-template-columns: 1.2fr repeat(3,1fr);
+      border:1px solid var(--border); border-radius:16px; overflow:hidden;
+    }
+    .pricing-compare .pc-cell{
+      padding:12px; border-right:1px solid var(--border); border-bottom:1px solid var(--border);
+    }
+    .pricing-compare .pc-cell:nth-child(4n){ border-right:none }
+    .pricing-compare .pc-th{ background:var(--bg-soft); font-weight:700 }
+    .pricing-compare .pc-feature{ font-weight:600 }
+    .pricing-compare .price{ margin-top:4px; font-weight:700 }
+    .pricing-compare .pc-accent{ outline:2px solid color-mix(in oklab, var(--accent), transparent 40%); }
+    .pc-yes{ font-weight:700 }
+    .pc-no{ opacity:.5 }
+    .pc-num{ font-variant-numeric: tabular-nums }
+    .pc-cta .btn{ display:block; text-align:center }
+
+    /* Forms / CTA / Footer */
+    .form{display:grid;gap:12px}
+    input,textarea,select{transition:border-color .15s ease, box-shadow .15s ease}
+    input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in oklab, var(--accent), transparent 75%)}
+    .cta{padding:56px 0}
+    .cta-box{background:linear-gradient(180deg,var(--accent),#7ed2ff);color:#081019;padding:28px;border-radius:18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .site-footer{border-top:1px solid var(--border);background:var(--bg-soft);margin-top:40px}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px;padding:20px 0}
+    .footer-nav,.footer-social{display:flex;gap:12px;flex-wrap:wrap}
+    .legal{padding:12px 0;text-align:center;color:var(--muted);border-top:1px solid var(--border)}
+  </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Zum Inhalt springen</a>
-
+  <!-- Header -->
   <header class="site-header" data-header>
     <div class="container nav">
-      <a href="index.html" class="brand" aria-label="Startseite">
-        <img src="assets/images/logo.png" alt="" class="logo" />
-        <span>Deine&nbsp;Firma</span>
-      </a>
-
-      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Menü öffnen">
-        ☰
-      </button>
-
+      <a href="#home" class="brand"><span class="brand-badge">C4</span><span>Creative4design</span></a>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Menü öffnen">☰</button>
       <nav id="site-menu" class="menu" data-mobile-menu>
-        <a href="index.html">Start</a>
-        <a href="about.html">Über uns</a>
-        <a href="bedarf.html">Bedarfsanalyse</a>
+        <a href="#home">Start</a>
+        <a href="#about">Über uns</a>
         <a href="#leistungen">Leistungen</a>
-        <a href="#referenzen">Referenzen</a>
+        <a href="#preise">Preise</a>
         <a href="#konfigurator">Konfigurator</a>
-        <a href="kontakt.html" class="btn btn-sm">Kontakt</a>
+        <a href="#kontakt" class="btn btn-ghost">Kontakt</a>
       </nav>
     </div>
   </header>
 
-  <main id="main">
+  <main id="home">
     <!-- Hero -->
     <section class="hero">
       <div class="container hero-grid">
         <div>
           <h1>Websites, die <span class="accent">verkaufen</span>.</h1>
-          <p>Wir planen, designen und entwickeln performante Websites – messbar schneller, sicherer und suchmaschinenfreundlich.</p>
+          <p>Planung, Design & Entwicklung – schnell, sicher und suchmaschinenfreundlich.</p>
           <div class="hero-actions">
-            <a href="#konfigurator" class="btn">Preis kalkulieren</a>
-            <a href="kontakt.html" class="btn btn-ghost">Kostenloses Erstgespräch</a>
+            <a href="#preise" class="btn">Preise ansehen</a>
+            <a href="#kontakt" class="btn btn-ghost">Kostenloses Erstgespräch</a>
           </div>
           <ul class="ticks">
             <li>Schnelle Ladezeiten</li>
@@ -58,9 +149,30 @@
             <li>CMS auf Wunsch</li>
           </ul>
         </div>
-        <div class="hero-media">
-          <!-- Ersetze hero.jpg durch dein Bild -->
-          <img src="assets/images/hero.jpg" alt="Moderne Website auf Laptop und Handy" />
+        <div>
+          <div class="card">
+            <h3>Richtwerte</h3>
+            <p class="muted">Kleine Unternehmensseite ab ~2 000 € · Shop ab ~5 000 €</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section section-muted">
+      <div class="container grid-2">
+        <div>
+          <h2>Über uns</h2>
+          <p>Wir sind ein kompaktes Team aus Design & Entwicklung – pragmatisch, schnell, zuverlässig. Fokus: messbare Ergebnisse.</p>
+          <ul class="ticks">
+            <li>Transparente Prozesse</li>
+            <li>Kurze Feedback-Schleifen</li>
+            <li>Langfristige Partnerschaften</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Standort</h3>
+          <p>Duisburg, Deutschland</p>
         </div>
       </div>
     </section>
@@ -68,84 +180,122 @@
     <!-- Leistungen -->
     <section id="leistungen" class="section">
       <div class="container">
-        <h2>Unsere Leistungen</h2>
+        <h2>Leistungen</h2>
         <div class="cards">
-          <article class="card">
-            <h3>Webdesign</h3>
-            <p>Individuelles, barrierearmes Design mit Fokus auf Conversion und Markenwirkung.</p>
-          </article>
-          <article class="card">
-            <h3>Entwicklung</h3>
-            <p>Sauberes HTML/CSS/JS, responsive, DSGVO-ready. Anbindung an CMS möglich.</p>
-          </article>
-          <article class="card">
-            <h3>SEO & Performance</h3>
-            <p>Technisches SEO, strukturierte Daten, Bild-Optimierung und Caching-Strategie.</p>
-          </article>
-          <article class="card">
-            <h3>Support & Wartung</h3>
-            <p>Updates, Monitoring und Backups – auf Wunsch als Servicepaket.</p>
-          </article>
+          <article class="card"><h3>Webdesign</h3><p>Individuelles Design mit Fokus auf Conversion & Brand.</p></article>
+          <article class="card"><h3>Entwicklung</h3><p>Sauberes HTML/CSS/JS, DSGVO-ready, responsive.</p></article>
+          <article class="card"><h3>SEO & Performance</h3><p>Technisches SEO, strukturierte Daten, Bild-Optimierung.</p></article>
+          <article class="card"><h3>Support & Wartung</h3><p>Updates, Monitoring & Backups als Servicepaket.</p></article>
         </div>
       </div>
     </section>
 
-    <!-- Referenzen -->
-    <section id="referenzen" class="section section-muted">
+    <!-- Preise -->
+    <section id="preise" class="section">
       <div class="container">
-        <h2>Ausgewählte Projekte</h2>
-        <div class="grid-3">
-          <figure class="work">
-            <img src="assets/images/ref1.jpg" alt="Projekt 1" />
-            <figcaption>Restaurant Website – 35% mehr Reservierungen</figcaption>
-          </figure>
-          <figure class="work">
-            <img src="assets/images/ref2.jpg" alt="Projekt 2" />
-            <figcaption>Handwerksbetrieb – schlanke Angebotsanfragen</figcaption>
-          </figure>
-          <figure class="work">
-            <img src="assets/images/ref3.jpg" alt="Projekt 3" />
-            <figcaption>Beratungsfirma – Thought-Leadership Blog</figcaption>
-          </figure>
+        <h2>Abo-Modelle & Leistungsumfang</h2>
+        <p class="muted small">Alle Pakete inkl. responsivem Design, Impressum & Datenschutz (DSGVO), SSL & Basis-Performance.</p>
+
+        <div class="pricing-wrap">
+          <div class="pricing-compare" role="table" aria-label="Leistungsvergleich">
+            <!-- Kopf -->
+            <div class="pc-cell pc-th pc-feature" role="columnheader">Leistung</div>
+            <div class="pc-cell pc-th" role="columnheader"><strong>Bronze</strong><br><small>bis 3 Seiten</small><div class="price">ab 1.199 €</div></div>
+            <div class="pc-cell pc-th" role="columnheader"><strong>Silber</strong><br><small>bis 6 Seiten</small><div class="price">ab 1.499 €</div></div>
+            <div class="pc-cell pc-th pc-accent" role="columnheader"><strong>Gold</strong><br><small>12–18 Seiten</small><div class="price">ab 2.999 €</div></div>
+
+            <!-- Zeilen -->
+            <div class="pc-cell pc-feature">Seitenanzahl</div>
+            <div class="pc-cell pc-num">bis 3</div>
+            <div class="pc-cell pc-num">bis 6</div>
+            <div class="pc-cell pc-num">12–18</div>
+
+            <div class="pc-cell pc-feature">Bilder inklusive</div>
+            <div class="pc-cell pc-num">bis 10</div>
+            <div class="pc-cell pc-num">bis 20</div>
+            <div class="pc-cell pc-num">bis 80</div>
+
+            <div class="pc-cell pc-feature">Responsives Design</div>
+            <div class="pc-cell pc-yes">✓</div><div class="pc-cell pc-yes">✓</div><div class="pc-cell pc-yes">✓</div>
+
+            <div class="pc-cell pc-feature">Kontaktformular</div>
+            <div class="pc-cell pc-yes">✓</div><div class="pc-cell pc-yes">✓</div><div class="pc-cell pc-yes">✓</div>
+
+            <div class="pc-cell pc-feature">Google-Maps</div>
+            <div class="pc-cell pc-yes">✓</div><div class="pc-cell pc-yes">✓</div><div class="pc-cell pc-yes">✓</div>
+
+            <div class="pc-cell pc-feature">E-Mail-Postfächer</div>
+            <div class="pc-cell pc-num">1</div><div class="pc-cell pc-num">2</div><div class="pc-cell pc-num">3</div>
+
+            <div class="pc-cell pc-feature">Videos</div>
+            <div class="pc-cell pc-no">–</div><div class="pc-cell pc-num">bis 2</div><div class="pc-cell pc-num">bis 4</div>
+
+            <div class="pc-cell pc-feature">Animationen</div>
+            <div class="pc-cell pc-no">–</div><div class="pc-cell pc-yes">✓</div><div class="pc-cell pc-yes">✓</div>
+
+            <div class="pc-cell pc-feature">Blog / News</div>
+            <div class="pc-cell pc-no">–</div><div class="pc-cell pc-yes">✓</div><div class="pc-cell pc-yes">✓</div>
+
+            <div class="pc-cell pc-feature">Mehrsprachigkeit</div>
+            <div class="pc-cell">optional +400 €</div><div class="pc-cell">optional +400 €</div><div class="pc-cell pc-yes">DE + EN inkl.</div>
+
+            <div class="pc-cell pc-feature">Buchungssystem</div>
+            <div class="pc-cell">optional +600 €</div><div class="pc-cell">optional +600 €</div><div class="pc-cell pc-yes">✓ (Setup inkl.)</div>
+
+            <div class="pc-cell pc-feature">Online-Shop</div>
+            <div class="pc-cell">optional ab 1.500 €</div><div class="pc-cell">optional ab 1.500 €</div><div class="pc-cell">optional ab 1.500 €</div>
+
+            <div class="pc-cell pc-feature">SEO-Setup (Titles, Sitemap, Schema)</div>
+            <div class="pc-cell pc-no">–</div><div class="pc-cell pc-yes">✓</div><div class="pc-cell pc-yes">✓</div>
+
+            <div class="pc-cell pc-feature">Analytics (Plausible/GA4)</div>
+            <div class="pc-cell pc-no">–</div><div class="pc-cell pc-yes">✓</div><div class="pc-cell pc-yes">✓</div>
+
+            <div class="pc-cell pc-feature">CMS-Schulung</div>
+            <div class="pc-cell pc-no">–</div><div class="pc-cell">1 h</div><div class="pc-cell">2 h</div>
+
+            <div class="pc-cell pc-feature">Wartung & Backups (mtl.)</div>
+            <div class="pc-cell">15 €</div><div class="pc-cell">25 €</div><div class="pc-cell">45 €</div>
+
+            <div class="pc-cell pc-feature">Reaktionszeit Support</div>
+            <div class="pc-cell">72 h</div><div class="pc-cell">48 h</div><div class="pc-cell">24 h</div>
+
+            <!-- CTA -->
+            <div class="pc-cell pc-feature pc-cta"> </div>
+            <div class="pc-cell pc-cta"><a href="#kontakt" class="btn btn-ghost">Bronze anfragen</a></div>
+            <div class="pc-cell pc-cta"><a href="#kontakt" class="btn btn-ghost">Silber anfragen</a></div>
+            <div class="pc-cell pc-cta"><a href="#kontakt" class="btn">Gold wählen</a></div>
+          </div>
         </div>
+
+        <p class="muted small">* Preise sind Richtwerte zzgl. USt. – Funktionspakete können kombiniert oder erweitert werden.</p>
       </div>
     </section>
 
-    <!-- Konfigurator (Preisrechner) -->
+    <!-- Konfigurator -->
     <section id="konfigurator" class="section">
       <div class="container">
         <h2>Projekt-Konfigurator</h2>
-        <p class="muted">Wähle die Bausteine aus – der Richtpreis aktualisiert sich live.</p>
+        <p class="muted">Wähle Bausteine – der Richtpreis aktualisiert sich live.</p>
 
         <form class="config" id="config-form" autocomplete="off">
           <div class="config-grid">
             <label>Seitenanzahl
               <input type="number" id="pages" min="1" max="50" value="5" />
             </label>
-
             <label>Bilder (Stück)
               <input type="number" id="bilder" min="0" max="500" value="20" />
             </label>
-
             <label>Animationen (Stück)
               <input type="number" id="animationen" min="0" max="20" value="2" />
             </label>
-
-            <label class="check">
-              <input type="checkbox" id="cms" />
-              <span>CMS-Integration (z. B. WordPress oder Headless)</span>
-            </label>
-
-            <label class="check">
-              <input type="checkbox" id="seo" />
-              <span>SEO-Boost (OnPage & technische Maßnahmen)</span>
-            </label>
-
+            <label><input type="checkbox" id="cms" /> CMS-Integration</label>
+            <label><input type="checkbox" id="seo" /> SEO-Boost</label>
             <fieldset class="hosting">
               <legend>Hosting & Wartung</legend>
               <label><input type="radio" name="hosting" value="none" checked /> Kein Hosting</label>
-              <label><input type="radio" name="hosting" value="basic" /> Basic (monatlich)</label>
-              <label><input type="radio" name="hosting" value="pro" /> Pro (monatlich)</label>
+              <label><input type="radio" name="hosting" value="basic" /> Basic (mtl.)</label>
+              <label><input type="radio" name="hosting" value="pro" /> Pro (mtl.)</label>
             </fieldset>
           </div>
 
@@ -153,10 +303,39 @@
             <h3>Dein Richtpreis</h3>
             <div class="sum-row"><span>Einmalige Umsetzung</span><strong id="price-einmalig">–</strong></div>
             <div class="sum-row"><span>Monatlich (falls Hosting)</span><strong id="price-monatlich">–</strong></div>
-            <p class="muted small">*Alle Preise sind unverbindliche Richtwerte zzgl. USt.</p>
-            <a href="kontakt.html" class="btn">Unverbindliches Angebot anfragen</a>
+            <p class="muted small">*Unverbindliche Richtwerte zzgl. USt.</p>
           </div>
         </form>
+      </div>
+    </section>
+
+    <!-- Kontakt -->
+    <section id="kontakt" class="section">
+      <div class="container grid-2">
+        <div>
+          <h2>Kontakt</h2>
+          <p>Erzähl uns kurz von deinem Projekt – wir melden uns schnell zurück.</p>
+          <form id="contact-form" class="form">
+            <label>Dein Name<input type="text" name="name" required></label>
+            <label>E-Mail<input type="email" name="email" required></label>
+            <label>Budget
+              <select name="budget">
+                <option value="unter-2k">unter 2 000 €</option>
+                <option value="2k-5k">2 000 – 5 000 €</option>
+                <option value="5k-10k">5 000 – 10 000 €</option>
+                <option value="ueber-10k">über 10 000 €</option>
+              </select>
+            </label>
+            <label>Nachricht<textarea name="message" rows="6" placeholder="Ziele, Referenzen, Funktionen …" required></textarea></label>
+            <button type="submit" class="btn">Nachricht senden</button>
+            <p class="muted small">Ohne Backend senden wir per E-Mail-Client (mailto:). Später kann Formspree/Netlify eingebunden werden.</p>
+          </form>
+        </div>
+        <div class="card">
+          <h3>Erstgespräch</h3>
+          <p>15 Minuten, kostenlos & unverbindlich.</p>
+          <p class="muted">Duisburg · Deutschland</p>
+        </div>
       </div>
     </section>
 
@@ -164,40 +343,78 @@
     <section class="cta">
       <div class="container cta-box">
         <h2>Bereit, loszulegen?</h2>
-        <p>Wir zeigen dir in 15 Minuten, wie deine neue Website aussehen kann.</p>
-        <a href="kontakt.html" class="btn btn-light">Jetzt Gespräch buchen</a>
+        <a href="#kontakt" class="btn btn-light">Jetzt anfragen</a>
       </div>
     </section>
   </main>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-grid">
-      <div>
-        <div class="brand brand--footer">
-          <img src="assets/images/logo.png" alt="" class="logo" />
-          <span>Deine&nbsp;Firma</span>
-        </div>
-        <p class="muted">Webdesign & Development aus Duisburg.</p>
-      </div>
+      <div><div class="brand"><span class="brand-badge">C4</span><span>Creative4design</span></div><p class="muted">Webdesign & Development</p></div>
       <nav class="footer-nav">
-        <a href="index.html">Start</a>
-        <a href="about.html">Über uns</a>
-        <a href="kontakt.html">Kontakt</a>
-        <a href="#leistungen">Leistungen</a>
+        <a href="#home">Start</a><a href="#about">Über uns</a><a href="#leistungen">Leistungen</a><a href="#preise">Preise</a><a href="#kontakt">Kontakt</a>
       </nav>
-      <div class="footer-social">
-        <a href="#" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.7v2.2h.1c.7-1.3 2.5-2.7 5.1-2.7 5.5 0 6.5 3.6 6.5 8.3V24h-5V16c0-1.9 0-4.3-2.7-4.3-2.7 0-3.1 2.1-3.1 4.2V24h-5V8z"/></svg>
-        </a>
-        <a href="#" aria-label="GitHub">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.7.5.9 5.3.9 11.6c0 4.9 3.2 9.1 7.7 10.6.6.1.8-.3.8-.6v-2.2c-3.1.7-3.8-1.3-3.8-1.3-.5-1.1-1.2-1.4-1.2-1.4-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1.6-1 .6-1-1.8-.2-3.6-.9-3.6-4 0-.9.3-1.6.9-2.2-.1-.2-.4-1.1.1-2.2 0 0 .8-.3 2.4.9.7-.2 1.5-.3 2.3-.3s1.6.1 2.3.3c1.6-1.2 2.4-.9 2.4-.9.5 1.1.2 2 .1 2.2.6.6.9 1.3.9 2.2 0 3.2-1.9 3.8-3.6 4 0 .3.5 1.1.6 2.2v3.2c0 .3.2.7.8.6 4.5-1.5 7.7-5.7 7.7-10.6C23.1 5.3 18.3.5 12 .5z"/></svg>
-        </a>
-      </div>
+      <div class="footer-social muted">© <span id="year"></span></div>
     </div>
-    <div class="container legal">
-      <small>© <span id="year"></span> Deine Firma – Alle Rechte vorbehalten.</small>
-    </div>
+    <div class="container legal"><small>© <span id="year2"></span> Creative4design – Alle Rechte vorbehalten.</small></div>
   </footer>
+
+  <script>
+    /* ===== Settings ===== */
+    const TO_EMAIL = "info@creative4design.de"; // <-- hier eure Zieladresse eintragen
+
+    /* Header shadow & mobile nav */
+    const header = document.querySelector('[data-header]');
+    const onScroll = () => header && header.classList.toggle('is-scrolled', scrollY > 8);
+    onScroll(); addEventListener('scroll', onScroll);
+
+    const navToggle = document.getElementById('nav-toggle');
+    const menu = document.querySelector('[data-mobile-menu]');
+    if (navToggle && menu){
+      navToggle.addEventListener('click', ()=>{
+        const open = menu.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', String(open));
+      });
+      menu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>menu.classList.remove('open')));
+    }
+
+    /* Footer years */
+    const y = new Date().getFullYear();
+    (document.getElementById('year')||{}).textContent = y;
+    (document.getElementById('year2')||{}).textContent = y;
+
+    /* Konfigurator */
+    const PRICES = { base:300, page:150, bild:10, animation:50, cms:400, seo:250, hosting:{none:0,basic:15,pro:35} };
+    function euro(n){ return new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR'}).format(n); }
+    function calcKonfig(){
+      const pages=+document.getElementById('pages')?.value||0;
+      const bilder=+document.getElementById('bilder')?.value||0;
+      const animationen=+document.getElementById('animationen')?.value||0;
+      const cms=document.getElementById('cms')?.checked||false;
+      const seo=document.getElementById('seo')?.checked||false;
+      const hosting=document.querySelector('input[name="hosting"]:checked')?.value||'none';
+      let einmalig = PRICES.base + pages*PRICES.page + bilder*PRICES.bild + animationen*PRICES.animation + (cms?PRICES.cms:0) + (seo?PRICES.seo:0);
+      const monatlich = PRICES.hosting[hosting]||0;
+      const pe=document.getElementById('price-einmalig'), pm=document.getElementById('price-monatlich');
+      if (pe) pe.textContent = euro(einmalig);
+      if (pm) pm.textContent = monatlich ? euro(monatlich) : '–';
+    }
+    ['pages','bilder','animationen','cms','seo'].forEach(id=>document.getElementById(id)?.addEventListener('input', calcKonfig));
+    document.querySelectorAll('input[name="hosting"]').forEach(r=>r.addEventListener('change', calcKonfig));
+    calcKonfig();
+
+    /* Kontaktformular (mailto) */
+    const contactForm = document.getElementById('contact-form');
+    contactForm?.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const fd = new FormData(contactForm);
+      const subject = encodeURIComponent('Neue Projektanfrage');
+      const body = encodeURIComponent(
+        `Name: ${fd.get('name')}\nE-Mail: ${fd.get('email')}\nBudget: ${fd.get('budget')}\n\nNachricht:\n${fd.get('message')}`
+      );
+      location.href = `mailto:${TO_EMAIL}?subject=${subject}&body=${body}`;
+    });
+  </script>
 </body>
 </html>
-
