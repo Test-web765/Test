@@ -8,7 +8,6 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0d12'/%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2353b1fd'/%3E%3Cstop offset='1' stop-color='%237ed2ff'/%3E%3C/linearGradient%3E%3Cpath d='M16 40 L32 14 L48 40 L38 40 L32 28 L26 40 Z' fill='url(%23g)'/%3E%3C/svg%3E" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* ===== Theme / Base ===== */
     :root{
       --bg:#0b0d12; --bg-soft:#10141d; --card:#111826; --border:#1e2533;
       --text:#e8eef8; --muted:#a8b0c2; --accent:#53b1fd; --accent-2:#7ed2ff;
@@ -32,7 +31,6 @@
     p{margin:0 0 1rem}
     .muted{color:var(--muted)} .small{font-size:.9rem}
 
-    /* Buttons & layout bits */
     .btn{background:var(--accent);color:#081019;padding:12px 16px;border-radius:12px;font-weight:700;display:inline-block;transform:translateZ(0);transition:transform .18s ease, box-shadow .25s ease, background .2s ease}
     .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
     .btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
@@ -49,7 +47,6 @@
     .ticks li{position:relative;padding-left:26px;margin:6px 0}
     .ticks li:before{content:"✓";position:absolute;left:0;top:0;color:var(--accent);font-weight:700}
 
-    /* Header / Nav */
     .site-header{position:sticky;top:0;z-index:50;background:rgba(16,20,29,.6);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid var(--border)}
     .site-header.is-scrolled{box-shadow:var(--shadow)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px}
@@ -65,7 +62,6 @@
       .menu.open{transform:translateY(0)}
     }
 
-    /* Hero */
     .hero{padding:64px 0 36px;background:
       radial-gradient(800px 400px at 15% -10%, rgba(83,177,253,.25), transparent),
       radial-gradient(700px 350px at 90% 10%, rgba(125,203,255,.15), transparent)}
@@ -74,7 +70,6 @@
     .hero-actions{display:flex;gap:12px;margin:14px 0 8px}
     @media (max-width:860px){.hero-grid{grid-template-columns:1fr}}
 
-    /* Konfigurator */
     .config{display:grid;gap:18px}
     .config-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;background:var(--card);border:1px solid var(--border);padding:18px;border-radius:16px}
     .config input[type=number], .config select{background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:10px 12px;font:inherit;transition:border-color .15s ease, box-shadow .15s ease}
@@ -84,7 +79,6 @@
     .sum-row{display:flex;align-items:center;justify-content:space-between;font-weight:700}
     @media (max-width:860px){.config-grid{grid-template-columns:1fr}.hosting{grid-column:auto}}
 
-    /* Pricing Compare */
     .pricing-wrap{overflow-x:auto}
     .pricing-compare{
       min-width: 820px;
@@ -101,26 +95,23 @@
     .pricing-compare .pc-feature{ font-weight:600 }
     .pricing-compare .pc-cell:hover{ background:rgba(83,177,253,.08) }
 
-    /* Paketfarben */
-    .pc-bronze{ background:#b87333; color:#111 }
-    .pc-silber{ background:#c7c9cc; color:#111 }
-    .pc-gold{   background:#f2c14e; color:#111 }
+    /* Dunkle Paketfarben */
+    .pc-bronze{ background:#6b3e0a; color:#fff }
+    .pc-silber{ background:#6d7075; color:#fff }
+    .pc-gold{   background:#8a6b1f; color:#fff }
 
-    /* Inputs in der Tabelle */
     .pricing-compare input[type="number"]{
       width:90px; max-width:100%; padding:8px 10px; border-radius:10px;
       border:1px solid var(--border); background:var(--bg); color:var(--text);
     }
     .pricing-compare input[type="checkbox"]{ width:18px; height:18px }
 
-    /* Reveal Animations */
     @media (prefers-reduced-motion:no-preference){
       [data-reveal]{opacity:0; transform:translateY(18px) scale(.98); filter:saturate(.9); transition:opacity .6s ease, transform .6s ease, filter .6s ease}
       [data-reveal].reveal-in{opacity:1; transform:none; filter:none}
       .card, .btn, .pc-cell{will-change:transform}
     }
 
-    /* Forms / CTA / Footer */
     .form{display:grid;gap:12px}
     input,textarea,select{transition:border-color .15s ease, box-shadow .15s ease}
     input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in oklab, var(--accent), transparent 75%)}
@@ -133,7 +124,6 @@
   </style>
 </head>
 <body>
-  <!-- Header -->
   <header class="site-header" data-header>
     <div class="container nav">
       <a href="#home" class="brand" data-reveal><span class="brand-badge">C4</span><span>Creative4design</span></a>
@@ -150,7 +140,6 @@
   </header>
 
   <main id="home">
-    <!-- Hero -->
     <section class="hero">
       <div class="container hero-grid">
         <div data-reveal>
@@ -175,7 +164,6 @@
       </div>
     </section>
 
-    <!-- About -->
     <section id="about" class="section section-muted">
       <div class="container grid-2">
         <div data-reveal>
@@ -194,7 +182,6 @@
       </div>
     </section>
 
-    <!-- Leistungen -->
     <section id="leistungen" class="section">
       <div class="container">
         <h2 data-reveal>Leistungen</h2>
@@ -214,13 +201,13 @@
 
         <div class="pricing-wrap">
           <div class="pricing-compare" role="table" aria-label="Leistungsvergleich">
-            <!-- Kopfzeile (ohne Platzhalter) + Farben -->
+            <!-- Kopfzeile -->
             <div class="pc-cell pc-th pc-feature" role="columnheader">Leistung</div>
             <div class="pc-cell pc-th pc-bronze" role="columnheader"><strong>Bronze</strong></div>
             <div class="pc-cell pc-th pc-silber" role="columnheader"><strong>Silber</strong></div>
             <div class="pc-cell pc-th pc-gold" role="columnheader"><strong>Gold</strong></div>
 
-            <!-- Daten wie in deinem Sheet -->
+            <!-- Daten -->
             <div class="pc-cell pc-feature">Seitenanzahl</div>                          <div class="pc-cell">3</div><div class="pc-cell">6</div><div class="pc-cell">18</div>
             <div class="pc-cell pc-feature">Design/CMS</div>                            <div class="pc-cell">WordPress</div><div class="pc-cell">WordPress</div><div class="pc-cell">Custom Webdesign</div>
             <div class="pc-cell pc-feature">Galerie</div>                               <div class="pc-cell">Lightbox</div><div class="pc-cell">DiaShow</div><div class="pc-cell">DiaShow</div>
@@ -248,9 +235,9 @@
 
             <!-- Zubuchbar -->
             <div class="pc-cell pc-feature">Exklusives Icondesign <span class="muted small">(150 € je 3 Icons)</span></div>
-            <div class="pc-cell"><input class="addon-icons" id="icons-bronze" type="number" min="0" step="3" value="0" aria-label="Icons Bronze"></div>
-            <div class="pc-cell"><input class="addon-icons" id="icons-silber" type="number" min="0" step="3" value="0" aria-label="Icons Silber"></div>
-            <div class="pc-cell"><input class="addon-icons" id="icons-gold"   type="number" min="0" step="3" value="0" aria-label="Icons Gold"></div>
+            <div class="pc-cell"><input class="addon-icons" id="icons-bronze" type="number" min="0" step="3" value="0" inputmode="none" aria-label="Icons Bronze"></div>
+            <div class="pc-cell"><input class="addon-icons" id="icons-silber" type="number" min="0" step="3" value="0" inputmode="none" aria-label="Icons Silber"></div>
+            <div class="pc-cell"><input class="addon-icons" id="icons-gold"   type="number" min="0" step="3" value="0" inputmode="none" aria-label="Icons Gold"></div>
 
             <div class="pc-cell pc-feature">Exklusive Schriftarten <span class="muted small">(Preis auf Anfrage)</span></div>
             <div class="pc-cell"><input type="checkbox" class="addon" data-price="0" id="fonts-bronze"  aria-label="Fonts Bronze"></div>
@@ -272,21 +259,17 @@
             <div class="pc-cell"><input type="checkbox" class="addon" data-price="300" id="kb-silber"    aria-label="Kundenbereich Silber"></div>
             <div class="pc-cell"><input type="checkbox" class="addon" data-price="300" id="kb-gold"      aria-label="Kundenbereich Gold"></div>
 
-            <!-- Gesamtpreis (Basis + Zubuchbare) -->
+            <!-- Gesamtpreis -->
             <div class="pc-cell pc-feature">Preis (inkl. Zubuchbares)</div>
             <div class="pc-cell"><strong id="total-bronze">999 €</strong></div>
             <div class="pc-cell"><strong id="total-silber">1 799 €</strong></div>
             <div class="pc-cell"><strong id="total-gold">4 999 €</strong></div>
           </div>
         </div>
-
-        <p class="muted small" style="margin-top:8px">
-          * Basispreise: Bronze 999 € · Silber 1 799 € · Gold 4 999 €. Zubuchbares wird automatisch addiert (Icons: 150 € je 3 Icons).
-        </p>
       </div>
     </section>
 
-    <!-- Konfigurator (bleibt bestehen) -->
+    <!-- Konfigurator -->
     <section id="konfigurator" class="section">
       <div class="container" data-reveal>
         <h2>Projekt-Konfigurator</h2>
@@ -323,7 +306,6 @@
       </div>
     </section>
 
-    <!-- Kontakt -->
     <section id="kontakt" class="section section-muted">
       <div class="container grid-2">
         <div data-reveal>
@@ -353,7 +335,6 @@
       </div>
     </section>
 
-    <!-- CTA -->
     <section class="cta">
       <div class="container cta-box" data-reveal>
         <h2>Bereit, loszulegen?</h2>
@@ -362,7 +343,6 @@
     </section>
   </main>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div data-reveal><div class="brand"><span class="brand-badge">C4</span><span>Creative4design</span></div><p class="muted">Webdesign & Development</p></div>
@@ -375,10 +355,8 @@
   </footer>
 
   <script>
-    /* ===== Settings ===== */
-    const TO_EMAIL = "info@creative4design.de"; // optional anpassen
+    const TO_EMAIL = "info@creative4design.de";
 
-    /* Header shadow & mobile nav */
     const header = document.querySelector('[data-header]');
     const onScroll = () => header && header.classList.toggle('is-scrolled', scrollY > 8);
     onScroll(); addEventListener('scroll', onScroll);
@@ -393,12 +371,10 @@
       menu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>menu.classList.remove('open')));
     }
 
-    /* Footer years */
     const y = new Date().getFullYear();
     (document.getElementById('year')||{}).textContent = y;
     (document.getElementById('year2')||{}).textContent = y;
 
-    /* Konfigurator (separat) */
     const PRICES = { base:300, page:150, bild:10, animation:50, cms:400, seo:250, hosting:{none:0,basic:15,pro:35} };
     function euro(n){ return new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR'}).format(n); }
     function calcKonfig(){
@@ -418,7 +394,6 @@
     document.querySelectorAll('input[name="hosting"]').forEach(r=>r.addEventListener('change', calcKonfig));
     calcKonfig();
 
-    /* Kontaktformular (mailto) */
     const contactForm = document.getElementById('contact-form');
     contactForm?.addEventListener('submit', (e)=>{
       e.preventDefault();
@@ -430,7 +405,6 @@
       location.href = `mailto:${TO_EMAIL}?subject=${subject}&body=${body}`;
     });
 
-    /* ===== Scroll-Reveal Animations ===== */
     (function(){
       const items = document.querySelectorAll('[data-reveal]');
       if (!items.length) return;
@@ -447,7 +421,7 @@
       items.forEach(el=>io.observe(el));
     })();
 
-    /* ===== Preisberechnung für Zubuchbares in der Tabelle ===== */
+    /* Preisberechnung für Zubuchbares & Eingabe-Sperre beim Icons-Feld */
     (function(){
       const BASE = { bronze: 999, silber: 1799, gold: 4999 };
       const fmt = n => new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n);
@@ -455,12 +429,10 @@
       function totalFor(pkg){
         let sum = BASE[pkg];
 
-        // Icons: 150 € je 3 Icons
         const iconInput = document.getElementById(`icons-${pkg}`);
         const icons = Math.max(0, parseInt(iconInput?.value||0,10)||0);
         sum += Math.floor(icons/3) * 150;
 
-        // Checkbox-Addons mit data-price
         document.querySelectorAll(`input.addon[id$='-${pkg}']:checked`).forEach(cb=>{
           const p = parseFloat(cb.dataset.price||'0')||0;
           sum += p;
@@ -482,6 +454,17 @@
         document.getElementById(`icons-${pkg}`)?.addEventListener('input', render);
         document.querySelectorAll(`input.addon[id$='-${pkg}']`).forEach(el=>el.addEventListener('change', render));
       });
+
+      // Keine Tastatureingabe bei Icons (nur Pfeile/Spinner erlauben)
+      document.querySelectorAll('.addon-icons').forEach(inp=>{
+        inp.addEventListener('keypress', e=> e.preventDefault());      // blockt Zahlen auf Desktop
+        inp.addEventListener('paste',   e=> e.preventDefault());      // blockt Einfügen
+        inp.addEventListener('keydown', e=>{
+          const allow = ['ArrowUp','ArrowDown','Tab','Home','End'];
+          if (!allow.includes(e.key) && !e.ctrlKey && !e.metaKey) e.preventDefault();
+        });
+      });
+
       render();
     })();
   </script>
