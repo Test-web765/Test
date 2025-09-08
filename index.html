@@ -16,58 +16,36 @@
     @media (prefers-color-scheme: light){
       :root{ --bg:#fff; --bg-soft:#f6f8fb; --card:#fff; --border:#e5e9f2; --text:#0c1321; --muted:#5b6477; --shadow:0 12px 36px rgba(0,0,0,.08) }
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    html,body{margin:0}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} html,body{margin:0}
     body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-    img{max-width:100%;display:block;border-radius:16px}
-    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block;border-radius:16px} a{color:inherit;text-decoration:none}
     .container{max-width:var(--container);margin:0 auto;padding:0 20px}
-    .section{padding:72px 0}
-    .section-muted{background:var(--bg-soft)}
+    .section{padding:72px 0} .section-muted{background:var(--bg-soft)}
     h1,h2,h3{line-height:1.2;margin:0 0 .5rem}
-    h1{font-size:clamp(2rem,2.5vw + 1rem,3.1rem)}
-    h2{font-size:clamp(1.5rem,1.2vw + .9rem,2rem);margin-bottom:1rem}
-    p{margin:0 0 1rem}
-    .muted{color:var(--muted)} .small{font-size:.9rem}
-
+    h1{font-size:clamp(2rem,2.5vw + 1rem,3.1rem)} h2{font-size:clamp(1.5rem,1.2vw + .9rem,2rem);margin-bottom:1rem}
+    p{margin:0 0 1rem} .muted{color:var(--muted)} .small{font-size:.9rem}
     .btn{background:var(--accent);color:#081019;padding:12px 16px;border-radius:12px;font-weight:700;display:inline-block;transform:translateZ(0);transition:transform .18s ease, box-shadow .25s ease, background .2s ease}
     .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
-    .btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
-    .btn-light{background:#fff;color:#0b0d12}
-    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text)} .btn-light{background:#fff;color:#0b0d12}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px} .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     @media (max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}}
     .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-    @media (max-width:1100px){.cards{grid-template-columns:repeat(2,1fr)}}
-    @media (max-width:640px){.cards{grid-template-columns:1fr}}
+    @media (max-width:1100px){.cards{grid-template-columns:repeat(2,1fr)}} @media (max-width:640px){.cards{grid-template-columns:1fr}}
     .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;transition:transform .25s ease, box-shadow .25s ease, border-color .2s ease}
     .card:hover{transform:translateY(-4px) scale(1.01);box-shadow:var(--shadow);border-color:color-mix(in oklab, var(--accent), transparent 60%)}
-    .ticks{list-style:none;padding:0;margin:.5rem 0 0}
-    .ticks li{position:relative;padding-left:26px;margin:6px 0}
-    .ticks li:before{content:"✓";position:absolute;left:0;top:0;color:var(--accent);font-weight:700}
+    .ticks{list-style:none;padding:0;margin:.5rem 0 0}.ticks li{position:relative;padding-left:26px;margin:6px 0}.ticks li:before{content:"✓";position:absolute;left:0;top:0;color:var(--accent);font-weight:700}
 
     .site-header{position:sticky;top:0;z-index:50;background:rgba(16,20,29,.6);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid var(--border)}
     .site-header.is-scrolled{box-shadow:var(--shadow)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700}
     .brand-badge{width:28px;height:28px;display:grid;place-items:center;border-radius:8px;background:linear-gradient(180deg,var(--accent),var(--accent-2));color:#081019;font-weight:900}
-    .menu{display:flex;align-items:center;gap:18px}
-    .menu a{transition:color .15s ease,opacity .15s ease}
-    .menu a:hover{color:var(--accent)}
+    .menu{display:flex;align-items:center;gap:18px}.menu a{transition:color .15s ease,opacity .15s ease}.menu a:hover{color:var(--accent)}
     .nav-toggle{display:none;background:transparent;border:1px solid var(--border);color:var(--text);border-radius:10px;padding:8px 10px}
-    @media (max-width:860px){
-      .nav-toggle{display:block}
-      .menu{position:fixed;inset:64px 0 auto 0;background:var(--bg);border-bottom:1px solid var(--border);flex-direction:column;gap:10px;padding:16px;transform:translateY(-120%);transition:transform .25s ease}
-      .menu.open{transform:translateY(0)}
-    }
+    @media (max-width:860px){.nav-toggle{display:block}.menu{position:fixed;inset:64px 0 auto 0;background:var(--bg);border-bottom:1px solid var(--border);flex-direction:column;gap:10px;padding:16px;transform:translateY(-120%);transition:transform .25s ease}.menu.open{transform:translateY(0)}}
 
-    .hero{padding:64px 0 36px;background:
-      radial-gradient(800px 400px at 15% -10%, rgba(83,177,253,.25), transparent),
-      radial-gradient(700px 350px at 90% 10%, rgba(125,203,255,.15), transparent)}
-    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
-    .hero .accent{color:var(--accent)}
-    .hero-actions{display:flex;gap:12px;margin:14px 0 8px}
+    .hero{padding:64px 0 36px;background:radial-gradient(800px 400px at 15% -10%, rgba(83,177,253,.25), transparent),radial-gradient(700px 350px at 90% 10%, rgba(125,203,255,.15), transparent)}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center} .hero .accent{color:var(--accent)} .hero-actions{display:flex;gap:12px;margin:14px 0 8px}
     @media (max-width:860px){.hero-grid{grid-template-columns:1fr}}
 
     .config{display:grid;gap:18px}
@@ -80,43 +58,32 @@
     @media (max-width:860px){.config-grid{grid-template-columns:1fr}.hosting{grid-column:auto}}
 
     .pricing-wrap{overflow-x:auto}
-    .pricing-compare{
-      min-width: 820px;
-      display:grid; grid-template-columns: 1.2fr repeat(3,1fr);
-      border:1px solid var(--border); border-radius:16px; overflow:hidden; background:var(--card);
-      box-shadow: 0 0 0 1px rgba(255,255,255,.02) inset;
-    }
-    .pricing-compare .pc-cell{
-      padding:12px; border-right:1px solid var(--border); border-bottom:1px solid var(--border);
-      transition: background .2s ease;
-    }
-    .pricing-compare .pc-cell:nth-child(4n){ border-right:none }
-    .pricing-compare .pc-th{ background:var(--bg-soft); font-weight:700; position:relative }
-    .pricing-compare .pc-feature{ font-weight:600 }
-    .pricing-compare .pc-cell:hover{ background:rgba(83,177,253,.08) }
+    .pricing-compare{min-width:820px;display:grid;grid-template-columns:1.2fr repeat(3,1fr);border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--card);box-shadow:0 0 0 1px rgba(255,255,255,.02) inset}
+    .pricing-compare .pc-cell{padding:12px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);transition:background .2s ease}
+    .pricing-compare .pc-cell:nth-child(4n){border-right:none}
+    .pricing-compare .pc-th{background:var(--bg-soft);font-weight:700;position:relative}
+    .pricing-compare .pc-feature{font-weight:600}
+    .pricing-compare .pc-cell:hover{background:rgba(83,177,253,.08)}
 
-    /* Dunkle Paketfarben */
-    .pc-bronze{ background:#6b3e0a; color:#fff }
-    .pc-silber{ background:#6d7075; color:#fff }
-    .pc-gold{   background:#8a6b1f; color:#fff }
+    /* dunkle Paketfarben */
+    .pc-bronze{background:#6b3e0a;color:#fff}
+    .pc-silber{background:#6d7075;color:#fff}
+    .pc-gold{background:#8a6b1f;color:#fff}
 
-    .pricing-compare input[type="number"]{
-      width:90px; max-width:100%; padding:8px 10px; border-radius:10px;
-      border:1px solid var(--border); background:var(--bg); color:var(--text);
-    }
-    .pricing-compare input[type="checkbox"]{ width:18px; height:18px }
+    /* Inputs */
+    .pricing-compare input[type="number"]{width:90px;max-width:100%;padding:8px 10px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text)}
+    .pricing-compare input[type="checkbox"]{width:18px;height:18px}
 
     @media (prefers-reduced-motion:no-preference){
-      [data-reveal]{opacity:0; transform:translateY(18px) scale(.98); filter:saturate(.9); transition:opacity .6s ease, transform .6s ease, filter .6s ease}
-      [data-reveal].reveal-in{opacity:1; transform:none; filter:none}
-      .card, .btn, .pc-cell{will-change:transform}
+      [data-reveal]{opacity:0;transform:translateY(18px) scale(.98);filter:saturate(.9);transition:opacity .6s ease, transform .6s ease, filter .6s ease}
+      [data-reveal].reveal-in{opacity:1;transform:none;filter:none}
+      .card,.btn,.pc-cell{will-change:transform}
     }
 
     .form{display:grid;gap:12px}
     input,textarea,select{transition:border-color .15s ease, box-shadow .15s ease}
     input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in oklab, var(--accent), transparent 75%)}
-    .cta{padding:56px 0}
-    .cta-box{background:linear-gradient(180deg,var(--accent),var(--accent-2));color:#081019;padding:28px;border-radius:18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .cta{padding:56px 0}.cta-box{background:linear-gradient(180deg,var(--accent),var(--accent-2));color:#081019;padding:28px;border-radius:18px;display:flex;align-items:center;justify-content:space-between;gap:16px}
     .site-footer{border-top:1px solid var(--border);background:var(--bg-soft);margin-top:40px}
     .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px;padding:20px 0}
     .footer-nav,.footer-social{display:flex;gap:12px;flex-wrap:wrap}
@@ -129,12 +96,7 @@
       <a href="#home" class="brand" data-reveal><span class="brand-badge">C4</span><span>Creative4design</span></a>
       <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Menü öffnen">☰</button>
       <nav id="site-menu" class="menu" data-mobile-menu>
-        <a href="#home">Start</a>
-        <a href="#about">Über uns</a>
-        <a href="#leistungen">Leistungen</a>
-        <a href="#preise">Preise</a>
-        <a href="#konfigurator">Konfigurator</a>
-        <a href="#kontakt" class="btn btn-ghost">Kontakt</a>
+        <a href="#home">Start</a><a href="#about">Über uns</a><a href="#leistungen">Leistungen</a><a href="#preise">Preise</a><a href="#konfigurator">Konfigurator</a><a href="#kontakt" class="btn btn-ghost">Kontakt</a>
       </nav>
     </div>
   </header>
@@ -145,21 +107,11 @@
         <div data-reveal>
           <h1>Websites, die <span class="accent">verkaufen</span>.</h1>
           <p>Planung, Design & Entwicklung – schnell, sicher und suchmaschinenfreundlich.</p>
-          <div class="hero-actions">
-            <a href="#preise" class="btn">Preise ansehen</a>
-            <a href="#kontakt" class="btn btn-ghost">Kostenloses Erstgespräch</a>
-          </div>
-          <ul class="ticks">
-            <li>Schnelle Ladezeiten</li>
-            <li>Sauberes SEO-Fundament</li>
-            <li>CMS auf Wunsch</li>
-          </ul>
+          <div class="hero-actions"><a href="#preise" class="btn">Preise ansehen</a><a href="#kontakt" class="btn btn-ghost">Kostenloses Erstgespräch</a></div>
+          <ul class="ticks"><li>Schnelle Ladezeiten</li><li>Sauberes SEO-Fundament</li><li>CMS auf Wunsch</li></ul>
         </div>
         <div data-reveal>
-          <div class="card">
-            <h3>Richtwerte</h3>
-            <p class="muted">Kleine Unternehmensseite ab ~2 000 € · Shop ab ~5 000 €</p>
-          </div>
+          <div class="card"><h3>Richtwerte</h3><p class="muted">Kleine Unternehmensseite ab ~2 000 € · Shop ab ~5 000 €</p></div>
         </div>
       </div>
     </section>
@@ -169,16 +121,9 @@
         <div data-reveal>
           <h2>Über uns</h2>
           <p>Wir sind ein kompaktes Team aus Design & Entwicklung – pragmatisch, schnell, zuverlässig. Fokus: messbare Ergebnisse.</p>
-          <ul class="ticks">
-            <li>Transparente Prozesse</li>
-            <li>Kurze Feedback-Schleifen</li>
-            <li>Langfristige Partnerschaften</li>
-          </ul>
+          <ul class="ticks"><li>Transparente Prozesse</li><li>Kurze Feedback-Schleifen</li><li>Langfristige Partnerschaften</li></ul>
         </div>
-        <div class="card" data-reveal>
-          <h3>Standort</h3>
-          <p>Duisburg, Deutschland</p>
-        </div>
+        <div class="card" data-reveal><h3>Standort</h3><p>Duisburg, Deutschland</p></div>
       </div>
     </section>
 
@@ -201,13 +146,11 @@
 
         <div class="pricing-wrap">
           <div class="pricing-compare" role="table" aria-label="Leistungsvergleich">
-            <!-- Kopfzeile -->
             <div class="pc-cell pc-th pc-feature" role="columnheader">Leistung</div>
             <div class="pc-cell pc-th pc-bronze" role="columnheader"><strong>Bronze</strong></div>
             <div class="pc-cell pc-th pc-silber" role="columnheader"><strong>Silber</strong></div>
             <div class="pc-cell pc-th pc-gold" role="columnheader"><strong>Gold</strong></div>
 
-            <!-- Daten -->
             <div class="pc-cell pc-feature">Seitenanzahl</div>                          <div class="pc-cell">3</div><div class="pc-cell">6</div><div class="pc-cell">18</div>
             <div class="pc-cell pc-feature">Design/CMS</div>                            <div class="pc-cell">WordPress</div><div class="pc-cell">WordPress</div><div class="pc-cell">Custom Webdesign</div>
             <div class="pc-cell pc-feature">Galerie</div>                               <div class="pc-cell">Lightbox</div><div class="pc-cell">DiaShow</div><div class="pc-cell">DiaShow</div>
@@ -220,15 +163,16 @@
             <div class="pc-cell pc-feature">Layoutschleifen</div>                       <div class="pc-cell">2</div><div class="pc-cell">3</div><div class="pc-cell">4</div>
             <div class="pc-cell pc-feature">Einfügen von iFrames</div>                  <div class="pc-cell">–</div><div class="pc-cell">3</div><div class="pc-cell">&infin;</div>
 
+            <!-- KORRIGIERTE HÄKCHEN NACH DEINEM BILD -->
             <div class="pc-cell pc-feature">Responsives Design</div>                    <div class="pc-cell">✓</div><div class="pc-cell">✓</div><div class="pc-cell">✓</div>
             <div class="pc-cell pc-feature">Impressum, Datenschutz (DSGVO) & AGB</div>  <div class="pc-cell">✓</div><div class="pc-cell">✓</div><div class="pc-cell">✓</div>
             <div class="pc-cell pc-feature">Google-Maps Verknüpfung</div>               <div class="pc-cell">✓</div><div class="pc-cell">✓</div><div class="pc-cell">✓</div>
             <div class="pc-cell pc-feature">Social-Media Verknüpfung</div>              <div class="pc-cell">✓</div><div class="pc-cell">✓</div><div class="pc-cell">✓</div>
             <div class="pc-cell pc-feature">Navigation</div>                            <div class="pc-cell">✓</div><div class="pc-cell">✓</div><div class="pc-cell">✓</div>
-            <div class="pc-cell pc-feature">SEO-Starter</div>                           <div class="pc-cell">✓</div><div class="pc-cell"></div><div class="pc-cell"></div>
-            <div class="pc-cell pc-feature">Eingebettete Daten (z. B. Preisliste)</div> <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell"></div>
-            <div class="pc-cell pc-feature">OpenStreetMap Standortkarte & PIN</div>     <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell">✓</div>
-            <div class="pc-cell pc-feature">Analytics (Plausible / GA4)</div>           <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell">✓</div>
+            <div class="pc-cell pc-feature">SEO-Starter</div>                           <div class="pc-cell">✓</div><div class="pc-cell">✓</div><div class="pc-cell">✓</div>
+            <div class="pc-cell pc-feature">Eingebettete Daten (z. B. Preisliste)</div> <div class="pc-cell"></div><div class="pc-cell">✓</div><div class="pc-cell"></div>
+            <div class="pc-cell pc-feature">OpenStreetMap Standortkarte & PIN</div>     <div class="pc-cell"></div><div class="pc-cell">✓</div><div class="pc-cell">✓</div>
+            <div class="pc-cell pc-feature">Analytics (Plausible / GA4)</div>           <div class="pc-cell"></div><div class="pc-cell">✓</div><div class="pc-cell">✓</div>
             <div class="pc-cell pc-feature">Parallax-Effekt</div>                       <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell">✓</div>
             <div class="pc-cell pc-feature">Blog / News</div>                           <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell">✓</div>
             <div class="pc-cell pc-feature">Datenbank-Anbindung</div>                   <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell">✓</div>
@@ -259,7 +203,6 @@
             <div class="pc-cell"><input type="checkbox" class="addon" data-price="300" id="kb-silber"    aria-label="Kundenbereich Silber"></div>
             <div class="pc-cell"><input type="checkbox" class="addon" data-price="300" id="kb-gold"      aria-label="Kundenbereich Gold"></div>
 
-            <!-- Gesamtpreis -->
             <div class="pc-cell pc-feature">Preis (inkl. Zubuchbares)</div>
             <div class="pc-cell"><strong id="total-bronze">999 €</strong></div>
             <div class="pc-cell"><strong id="total-silber">1 799 €</strong></div>
@@ -277,15 +220,9 @@
 
         <form class="config" id="config-form" autocomplete="off">
           <div class="config-grid">
-            <label>Seitenanzahl
-              <input type="number" id="pages" min="1" max="50" value="5" />
-            </label>
-            <label>Bilder (Stück)
-              <input type="number" id="bilder" min="0" max="500" value="20" />
-            </label>
-            <label>Animationen (Stück)
-              <input type="number" id="animationen" min="0" max="20" value="2" />
-            </label>
+            <label>Seitenanzahl <input type="number" id="pages" min="1" max="50" value="5" /></label>
+            <label>Bilder (Stück) <input type="number" id="bilder" min="0" max="500" value="20" /></label>
+            <label>Animationen (Stück) <input type="number" id="animationen" min="0" max="20" value="2" /></label>
             <label><input type="checkbox" id="cms" /> CMS-Integration</label>
             <label><input type="checkbox" id="seo" /> SEO-Boost</label>
             <fieldset class="hosting">
@@ -375,6 +312,7 @@
     (document.getElementById('year')||{}).textContent = y;
     (document.getElementById('year2')||{}).textContent = y;
 
+    /* Konfigurator (separat) */
     const PRICES = { base:300, page:150, bild:10, animation:50, cms:400, seo:250, hosting:{none:0,basic:15,pro:35} };
     function euro(n){ return new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR'}).format(n); }
     function calcKonfig(){
@@ -394,77 +332,62 @@
     document.querySelectorAll('input[name="hosting"]').forEach(r=>r.addEventListener('change', calcKonfig));
     calcKonfig();
 
+    /* Kontakt (mailto) */
     const contactForm = document.getElementById('contact-form');
     contactForm?.addEventListener('submit', (e)=>{
       e.preventDefault();
       const fd = new FormData(contactForm);
       const subject = encodeURIComponent('Neue Projektanfrage');
-      const body = encodeURIComponent(
-        `Name: ${fd.get('name')}\nE-Mail: ${fd.get('email')}\nBudget: ${fd.get('budget')}\n\nNachricht:\n${fd.get('message')}`
-      );
+      const body = encodeURIComponent(`Name: ${fd.get('name')}\nE-Mail: ${fd.get('email')}\nBudget: ${fd.get('budget')}\n\nNachricht:\n${fd.get('message')}`);
       location.href = `mailto:${TO_EMAIL}?subject=${subject}&body=${body}`;
     });
 
+    /* Reveal */
     (function(){
       const items = document.querySelectorAll('[data-reveal]');
       if (!items.length) return;
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (reduce){ items.forEach(el=>el.classList.add('reveal-in')); return; }
       const io = new IntersectionObserver((entries)=>{
-        entries.forEach(entry=>{
-          if (entry.isIntersecting){
-            entry.target.classList.add('reveal-in');
-            io.unobserve(entry.target);
-          }
-        });
-      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+        entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('reveal-in'); io.unobserve(e.target);} });
+      }, { rootMargin:'0px 0px -10% 0px', threshold:0.1 });
       items.forEach(el=>io.observe(el));
     })();
 
-    /* Preisberechnung für Zubuchbares & Eingabe-Sperre beim Icons-Feld */
+    /* Preise für Zubuchbares + Icons nur per Pfeile */
     (function(){
       const BASE = { bronze: 999, silber: 1799, gold: 4999 };
       const fmt = n => new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n);
 
       function totalFor(pkg){
         let sum = BASE[pkg];
-
         const iconInput = document.getElementById(`icons-${pkg}`);
         const icons = Math.max(0, parseInt(iconInput?.value||0,10)||0);
         sum += Math.floor(icons/3) * 150;
-
         document.querySelectorAll(`input.addon[id$='-${pkg}']:checked`).forEach(cb=>{
-          const p = parseFloat(cb.dataset.price||'0')||0;
-          sum += p;
+          const p = parseFloat(cb.dataset.price||'0')||0; sum += p;
         });
-
         return sum;
       }
-
       function render(){
-        const b = document.getElementById('total-bronze');
-        const s = document.getElementById('total-silber');
-        const g = document.getElementById('total-gold');
-        if (b) b.textContent = fmt(totalFor('bronze'));
-        if (s) s.textContent = fmt(totalFor('silber'));
-        if (g) g.textContent = fmt(totalFor('gold'));
+        const map = {bronze:'total-bronze', silber:'total-silber', gold:'total-gold'};
+        Object.entries(map).forEach(([pkg,id])=>{
+          const el = document.getElementById(id); if(el) el.textContent = fmt(totalFor(pkg));
+        });
       }
-
       ['bronze','silber','gold'].forEach(pkg=>{
         document.getElementById(`icons-${pkg}`)?.addEventListener('input', render);
         document.querySelectorAll(`input.addon[id$='-${pkg}']`).forEach(el=>el.addEventListener('change', render));
       });
-
-      // Keine Tastatureingabe bei Icons (nur Pfeile/Spinner erlauben)
+      // Tipp- & Paste-Sperre bei Icons
       document.querySelectorAll('.addon-icons').forEach(inp=>{
-        inp.addEventListener('keypress', e=> e.preventDefault());      // blockt Zahlen auf Desktop
-        inp.addEventListener('paste',   e=> e.preventDefault());      // blockt Einfügen
+        inp.addEventListener('keypress', e=> e.preventDefault());
+        inp.addEventListener('paste',   e=> e.preventDefault());
         inp.addEventListener('keydown', e=>{
           const allow = ['ArrowUp','ArrowDown','Tab','Home','End'];
           if (!allow.includes(e.key) && !e.ctrlKey && !e.metaKey) e.preventDefault();
         });
       });
-
       render();
     })();
   </script>
