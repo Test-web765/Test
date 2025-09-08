@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Creative4design – Webdesign & Preise</title>
-  <meta name="description" content="Moderne Websites mit Fokus auf Conversion & Performance. Preisübersicht Bronze, Silber, Gold – Konfigurator & Kontakt.">
+  <meta name="description" content="Moderne Websites mit Fokus auf Conversion & Performance. Preisübersicht Bronze, Silber, Gold – inkl. Zubuchbaren und Live-Berechnung." />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0d12'/%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2353b1fd'/%3E%3Cstop offset='1' stop-color='%237ed2ff'/%3E%3C/linearGradient%3E%3Cpath d='M16 40 L32 14 L48 40 L38 40 L32 28 L26 40 Z' fill='url(%23g)'/%3E%3C/svg%3E" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
@@ -84,10 +84,10 @@
     .sum-row{display:flex;align-items:center;justify-content:space-between;font-weight:700}
     @media (max-width:860px){.config-grid{grid-template-columns:1fr}.hosting{grid-column:auto}}
 
-    /* Pricing Compare (nur 1. Zeile + 1. Spalte beschriftet) */
+    /* Pricing Compare */
     .pricing-wrap{overflow-x:auto}
     .pricing-compare{
-      min-width: 780px;
+      min-width: 820px;
       display:grid; grid-template-columns: 1.2fr repeat(3,1fr);
       border:1px solid var(--border); border-radius:16px; overflow:hidden; background:var(--card);
       box-shadow: 0 0 0 1px rgba(255,255,255,.02) inset;
@@ -100,7 +100,18 @@
     .pricing-compare .pc-th{ background:var(--bg-soft); font-weight:700; position:relative }
     .pricing-compare .pc-feature{ font-weight:600 }
     .pricing-compare .pc-cell:hover{ background:rgba(83,177,253,.08) }
-    .price{height:1.2rem} /* leerer Preis-Platzhalter */
+
+    /* Paketfarben */
+    .pc-bronze{ background:#b87333; color:#111 }
+    .pc-silber{ background:#c7c9cc; color:#111 }
+    .pc-gold{   background:#f2c14e; color:#111 }
+
+    /* Inputs in der Tabelle */
+    .pricing-compare input[type="number"]{
+      width:90px; max-width:100%; padding:8px 10px; border-radius:10px;
+      border:1px solid var(--border); background:var(--bg); color:var(--text);
+    }
+    .pricing-compare input[type="checkbox"]{ width:18px; height:18px }
 
     /* Reveal Animations */
     @media (prefers-reduced-motion:no-preference){
@@ -196,46 +207,86 @@
       </div>
     </section>
 
-    <!-- Preise (GEÄNDERT nach deinen Vorgaben) -->
+    <!-- Preise -->
     <section id="preise" class="section">
       <div class="container" data-reveal>
         <h2>Abo-Modelle & Leistungsumfang</h2>
-        <p class="muted small">Nur Kopfzeile & erste Spalte sind befüllt. Preise & Häkchen tragen wir später ein.</p>
 
         <div class="pricing-wrap">
-          <div class="pricing-compare" role="table" aria-label="Leistungsvergleich (Platzhalter)">
-            <!-- Kopfzeile: Paketnamen, Preis-Platzhalter leer (keine Seitenanzahlen) -->
+          <div class="pricing-compare" role="table" aria-label="Leistungsvergleich">
+            <!-- Kopfzeile (ohne Platzhalter) + Farben -->
             <div class="pc-cell pc-th pc-feature" role="columnheader">Leistung</div>
-            <div class="pc-cell pc-th" role="columnheader"><strong>Bronze</strong><div class="price"></div></div>
-            <div class="pc-cell pc-th" role="columnheader"><strong>Silber</strong><div class="price"></div></div>
-            <div class="pc-cell pc-th" role="columnheader"><strong>Gold</strong><div class="price"></div></div>
+            <div class="pc-cell pc-th pc-bronze" role="columnheader"><strong>Bronze</strong></div>
+            <div class="pc-cell pc-th pc-silber" role="columnheader"><strong>Silber</strong></div>
+            <div class="pc-cell pc-th pc-gold" role="columnheader"><strong>Gold</strong></div>
 
-            <!-- NUR SPALTE 1 beschriftet, restliche Zellen leer -->
-            <div class="pc-cell pc-feature">Seitenanzahl</div>                         <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell"></div>
-            <div class="pc-cell pc-feature">Bilder inklusive</div>                     <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell"></div>
-            <div class="pc-cell pc-feature">Responsives Design</div>                   <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell"></div>
-            <div class="pc-cell pc-feature">Impressum & Datenschutz (DSGVO)</div>      <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell"></div>
-            <div class="pc-cell pc-feature">Kontaktformular</div>                       <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell"></div>
-            <div class="pc-cell pc-feature">Google-Maps Verknüpfung</div>               <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell"></div>
-            <div class="pc-cell pc-feature">E-Mail-Postfächer</div>                     <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell"></div>
-            <div class="pc-cell pc-feature">Social-Media Verknüpfung</div>              <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell"></div>
-            <div class="pc-cell pc-feature">Videos</div>                                <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell"></div>
-            <div class="pc-cell pc-feature">Animationen / Mikro-Interaktionen</div>     <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell"></div>
-            <div class="pc-cell pc-feature">Blog / News</div>                           <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell"></div>
-            <div class="pc-cell pc-feature">SEO-Setup (Titles, Sitemap, Schema)</div>   <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell"></div>
-            <div class="pc-cell pc-feature">Analytics (Plausible / GA4)</div>           <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell"></div>
-            <div class="pc-cell pc-feature">Individuelles Webdesign</div>               <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell"></div>
-            <div class="pc-cell pc-feature">CMS-Schulung</div>                          <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell"></div>
-            <div class="pc-cell pc-feature">Wartung & Backups (mtl.)</div>              <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell"></div>
-            <div class="pc-cell pc-feature">Reaktionszeit Support</div>                 <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell"></div>
+            <!-- Daten wie in deinem Sheet -->
+            <div class="pc-cell pc-feature">Seitenanzahl</div>                          <div class="pc-cell">3</div><div class="pc-cell">6</div><div class="pc-cell">18</div>
+            <div class="pc-cell pc-feature">Design/CMS</div>                            <div class="pc-cell">WordPress</div><div class="pc-cell">WordPress</div><div class="pc-cell">Custom Webdesign</div>
+            <div class="pc-cell pc-feature">Galerie</div>                               <div class="pc-cell">Lightbox</div><div class="pc-cell">DiaShow</div><div class="pc-cell">DiaShow</div>
+            <div class="pc-cell pc-feature">Animationen / Mikro-Interaktionen</div>     <div class="pc-cell">Classic</div><div class="pc-cell">Premium</div><div class="pc-cell">Deluxe</div>
+            <div class="pc-cell pc-feature">Video-Integration</div>                     <div class="pc-cell">1</div><div class="pc-cell">6</div><div class="pc-cell">12</div>
+            <div class="pc-cell pc-feature">Kontaktformular</div>                       <div class="pc-cell">1</div><div class="pc-cell">2</div><div class="pc-cell">&infin;</div>
+            <div class="pc-cell pc-feature">Download-Material (.zip/.pdf/.jpg)</div>    <div class="pc-cell">3</div><div class="pc-cell">6</div><div class="pc-cell">18</div>
+            <div class="pc-cell pc-feature">Bilderanzahl</div>                          <div class="pc-cell">10</div><div class="pc-cell">30</div><div class="pc-cell">80</div>
+            <div class="pc-cell pc-feature">Startseiten Header Slider</div>             <div class="pc-cell">1</div><div class="pc-cell">2</div><div class="pc-cell">3</div>
+            <div class="pc-cell pc-feature">Layoutschleifen</div>                       <div class="pc-cell">2</div><div class="pc-cell">3</div><div class="pc-cell">4</div>
+            <div class="pc-cell pc-feature">Einfügen von iFrames</div>                  <div class="pc-cell">–</div><div class="pc-cell">3</div><div class="pc-cell">&infin;</div>
 
-            <!-- Entfernt: Mehrsprachigkeit, Buchungssystem, Online-Shop (waren „optional …“) -->
+            <div class="pc-cell pc-feature">Responsives Design</div>                    <div class="pc-cell">✓</div><div class="pc-cell">✓</div><div class="pc-cell">✓</div>
+            <div class="pc-cell pc-feature">Impressum, Datenschutz (DSGVO) & AGB</div>  <div class="pc-cell">✓</div><div class="pc-cell">✓</div><div class="pc-cell">✓</div>
+            <div class="pc-cell pc-feature">Google-Maps Verknüpfung</div>               <div class="pc-cell">✓</div><div class="pc-cell">✓</div><div class="pc-cell">✓</div>
+            <div class="pc-cell pc-feature">Social-Media Verknüpfung</div>              <div class="pc-cell">✓</div><div class="pc-cell">✓</div><div class="pc-cell">✓</div>
+            <div class="pc-cell pc-feature">Navigation</div>                            <div class="pc-cell">✓</div><div class="pc-cell">✓</div><div class="pc-cell">✓</div>
+            <div class="pc-cell pc-feature">SEO-Starter</div>                           <div class="pc-cell">✓</div><div class="pc-cell"></div><div class="pc-cell"></div>
+            <div class="pc-cell pc-feature">Eingebettete Daten (z. B. Preisliste)</div> <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell"></div>
+            <div class="pc-cell pc-feature">OpenStreetMap Standortkarte & PIN</div>     <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell">✓</div>
+            <div class="pc-cell pc-feature">Analytics (Plausible / GA4)</div>           <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell">✓</div>
+            <div class="pc-cell pc-feature">Parallax-Effekt</div>                       <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell">✓</div>
+            <div class="pc-cell pc-feature">Blog / News</div>                           <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell">✓</div>
+            <div class="pc-cell pc-feature">Datenbank-Anbindung</div>                   <div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell">✓</div>
+
+            <!-- Zubuchbar -->
+            <div class="pc-cell pc-feature">Exklusives Icondesign <span class="muted small">(150 € je 3 Icons)</span></div>
+            <div class="pc-cell"><input class="addon-icons" id="icons-bronze" type="number" min="0" step="3" value="0" aria-label="Icons Bronze"></div>
+            <div class="pc-cell"><input class="addon-icons" id="icons-silber" type="number" min="0" step="3" value="0" aria-label="Icons Silber"></div>
+            <div class="pc-cell"><input class="addon-icons" id="icons-gold"   type="number" min="0" step="3" value="0" aria-label="Icons Gold"></div>
+
+            <div class="pc-cell pc-feature">Exklusive Schriftarten <span class="muted small">(Preis auf Anfrage)</span></div>
+            <div class="pc-cell"><input type="checkbox" class="addon" data-price="0" id="fonts-bronze"  aria-label="Fonts Bronze"></div>
+            <div class="pc-cell"><input type="checkbox" class="addon" data-price="0" id="fonts-silber"  aria-label="Fonts Silber"></div>
+            <div class="pc-cell"><input type="checkbox" class="addon" data-price="0" id="fonts-gold"    aria-label="Fonts Gold"></div>
+
+            <div class="pc-cell pc-feature">Professionelle Texte <span class="muted small">(ab 300 €)</span></div>
+            <div class="pc-cell"><input type="checkbox" class="addon" data-price="300" id="texte-bronze" aria-label="Texte Bronze"></div>
+            <div class="pc-cell"><input type="checkbox" class="addon" data-price="300" id="texte-silber" aria-label="Texte Silber"></div>
+            <div class="pc-cell"><input type="checkbox" class="addon" data-price="300" id="texte-gold"   aria-label="Texte Gold"></div>
+
+            <div class="pc-cell pc-feature">Bewertungs-Widget <span class="muted small">(100 €)</span></div>
+            <div class="pc-cell"><input type="checkbox" class="addon" data-price="100" id="bew-bronze"   aria-label="Bewertungen Bronze"></div>
+            <div class="pc-cell"><input type="checkbox" class="addon" data-price="100" id="bew-silber"   aria-label="Bewertungen Silber"></div>
+            <div class="pc-cell"><input type="checkbox" class="addon" data-price="100" id="bew-gold"     aria-label="Bewertungen Gold"></div>
+
+            <div class="pc-cell pc-feature">Kundenbereich <span class="muted small">(300 €)</span></div>
+            <div class="pc-cell"><input type="checkbox" class="addon" data-price="300" id="kb-bronze"    aria-label="Kundenbereich Bronze"></div>
+            <div class="pc-cell"><input type="checkbox" class="addon" data-price="300" id="kb-silber"    aria-label="Kundenbereich Silber"></div>
+            <div class="pc-cell"><input type="checkbox" class="addon" data-price="300" id="kb-gold"      aria-label="Kundenbereich Gold"></div>
+
+            <!-- Gesamtpreis (Basis + Zubuchbare) -->
+            <div class="pc-cell pc-feature">Preis (inkl. Zubuchbares)</div>
+            <div class="pc-cell"><strong id="total-bronze">999 €</strong></div>
+            <div class="pc-cell"><strong id="total-silber">1 799 €</strong></div>
+            <div class="pc-cell"><strong id="total-gold">4 999 €</strong></div>
           </div>
         </div>
+
+        <p class="muted small" style="margin-top:8px">
+          * Basispreise: Bronze 999 € · Silber 1 799 € · Gold 4 999 €. Zubuchbares wird automatisch addiert (Icons: 150 € je 3 Icons).
+        </p>
       </div>
     </section>
 
-    <!-- Konfigurator -->
+    <!-- Konfigurator (bleibt bestehen) -->
     <section id="konfigurator" class="section">
       <div class="container" data-reveal>
         <h2>Projekt-Konfigurator</h2>
@@ -325,7 +376,7 @@
 
   <script>
     /* ===== Settings ===== */
-    const TO_EMAIL = "info@creative4design.de"; // <-- anpassen
+    const TO_EMAIL = "info@creative4design.de"; // optional anpassen
 
     /* Header shadow & mobile nav */
     const header = document.querySelector('[data-header]');
@@ -347,7 +398,7 @@
     (document.getElementById('year')||{}).textContent = y;
     (document.getElementById('year2')||{}).textContent = y;
 
-    /* Konfigurator */
+    /* Konfigurator (separat) */
     const PRICES = { base:300, page:150, bild:10, animation:50, cms:400, seo:250, hosting:{none:0,basic:15,pro:35} };
     function euro(n){ return new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR'}).format(n); }
     function calcKonfig(){
@@ -394,6 +445,44 @@
         });
       }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
       items.forEach(el=>io.observe(el));
+    })();
+
+    /* ===== Preisberechnung für Zubuchbares in der Tabelle ===== */
+    (function(){
+      const BASE = { bronze: 999, silber: 1799, gold: 4999 };
+      const fmt = n => new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n);
+
+      function totalFor(pkg){
+        let sum = BASE[pkg];
+
+        // Icons: 150 € je 3 Icons
+        const iconInput = document.getElementById(`icons-${pkg}`);
+        const icons = Math.max(0, parseInt(iconInput?.value||0,10)||0);
+        sum += Math.floor(icons/3) * 150;
+
+        // Checkbox-Addons mit data-price
+        document.querySelectorAll(`input.addon[id$='-${pkg}']:checked`).forEach(cb=>{
+          const p = parseFloat(cb.dataset.price||'0')||0;
+          sum += p;
+        });
+
+        return sum;
+      }
+
+      function render(){
+        const b = document.getElementById('total-bronze');
+        const s = document.getElementById('total-silber');
+        const g = document.getElementById('total-gold');
+        if (b) b.textContent = fmt(totalFor('bronze'));
+        if (s) s.textContent = fmt(totalFor('silber'));
+        if (g) g.textContent = fmt(totalFor('gold'));
+      }
+
+      ['bronze','silber','gold'].forEach(pkg=>{
+        document.getElementById(`icons-${pkg}`)?.addEventListener('input', render);
+        document.querySelectorAll(`input.addon[id$='-${pkg}']`).forEach(el=>el.addEventListener('change', render));
+      });
+      render();
     })();
   </script>
 </body>
