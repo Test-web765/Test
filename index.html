@@ -88,6 +88,21 @@
     .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px;padding:20px 0}
     .footer-nav,.footer-social{display:flex;gap:12px;flex-wrap:wrap}
     .legal{padding:12px 0;text-align:center;color:var(--muted);border-top:1px solid var(--border)}
+    /* Alle Zellen zentrieren – außer die 1. Spalte (Leistungen) */
+    .pricing-compare .pc-cell:not(.pc-feature),
+    .pricing-compare .pc-th:not(.pc-feature){
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+
+    /* 1. Spalte (Leistungen) linksbündig lassen */
+    .pricing-compare .pc-feature{
+      display:block;   /* überschreibt flex */
+      text-align:left;
+    }
+
   </style>
 </head>
 <body>
