@@ -14,22 +14,20 @@
   --text:#e8eef8; --muted:#a9b1c6; --accent:#59b6ff; --accent2:#7ed2ff; --ok:#8ee59b;
   --radius:16px; --shadow:0 18px 60px rgba(0,0,0,.35); --container:1180px;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-html,body{margin:0}
+*{box-sizing:border-box} html,body{margin:0} html{scroll-behavior:smooth}
 body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
 a{color:inherit;text-decoration:none}
 .container{max-width:var(--container);margin:0 auto;padding:0 22px}
 .section{padding:84px 0}
 .section--soft{background:linear-gradient(180deg, rgba(94,194,255,.06), transparent)}
 h1,h2,h3{margin:0 0 .6rem; line-height:1.15}
-h1{font-size:clamp(2.1rem,3vw + 1rem,3.6rem)}
-h2{font-size:clamp(1.6rem,1.2vw + 1rem,2.2rem)}
+h1{font-size:clamp(2rem,3vw + 1rem,3.4rem)}
+h2{font-size:clamp(1.5rem,1.2vw + 1rem,2rem)}
 .small{font-size:.92rem} .muted{color:var(--muted)}
 .hr{height:1px;background:var(--border);margin:18px 0}
 
 /* =========================================================
-   HEADER (nur 1 Primärbutton, unnötige Buttons entfernt)
+   HEADER – nur Textlinks, kein bunter Button
    ========================================================= */
 .header{position:sticky;top:0;z-index:60;backdrop-filter:saturate(1.2) blur(10px);
   background:linear-gradient(180deg, rgba(15,20,30,.78), rgba(15,20,30,.58));
@@ -38,14 +36,12 @@ h2{font-size:clamp(1.6rem,1.2vw + 1rem,2.2rem)}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800}
 .brand-badge{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-weight:900;color:#07101a;background:linear-gradient(180deg,var(--accent),var(--accent2))}
 .menu{display:flex;gap:18px;align-items:center}
-.menu a{opacity:.9;transition:opacity .15s ease,color .15s ease}
-.menu a:hover{opacity:1;color:var(--accent)}
-.btn{display:inline-flex;gap:8px;align-items:center;justify-content:center;border-radius:12px;padding:12px 16px;font-weight:700;background:var(--accent);color:#07101a;box-shadow:0 10px 36px rgba(89,182,255,.25);transition:transform .18s ease, box-shadow .25s ease}
-.btn:hover{transform:translateY(-2px);box-shadow:0 18px 60px rgba(89,182,255,.35)}
+.menu a{opacity:.85;transition:opacity .15s ease,color .15s ease;padding:8px 10px;border-radius:10px}
+.menu a:hover{opacity:1;background:rgba(255,255,255,.04);color:var(--accent)}
 @media (max-width:860px){ .menu{display:none} }
 
 /* =========================================================
-   HERO (ohne Icons/Binder vor Texten)
+   HERO
    ========================================================= */
 .hero{position:relative;padding:90px 0 64px;overflow:hidden;}
 .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
@@ -54,55 +50,53 @@ h2{font-size:clamp(1.6rem,1.2vw + 1rem,2.2rem)}
 @media (max-width:980px){ .hero-grid{grid-template-columns:1fr} }
 
 /* =========================================================
-   PRICING TABLE – responsive: horizontal scroll auf Mobil
+   PRICING – mobil: horizontales Scroll (min-width)
    ========================================================= */
 .table-wrap{overflow-x:auto;border-radius:18px;box-shadow:var(--shadow)}
-.pricing__table{min-width:960px;border:1px solid var(--border);border-radius:18px;overflow:hidden;background:var(--panel)}
+.pricing__table{min-width:980px;border:1px solid var(--border);border-radius:18px;overflow:hidden;background:var(--panel)}
 .pc-row{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr}
 .pc-row>.pc-cell{padding:14px 12px;border-bottom:1px solid var(--border);border-right:1px solid var(--border)}
 .pc-row>.pc-cell:last-child{border-right:none}
 .pc-row--head .pc-cell{background:#0f1a2c;font-weight:800}
-.pc-col--a{background:#6b3e0a;color:#fff}
-.pc-col--b{background:#666a70;color:#fff}
-.pc-col--c{background:#8a6b1f;color:#fff}
 
-/* Leistungs-Spalte: weiß, ohne blauen Punkt – mit feinem linken Akzent */
+/* Spaltenköpfe dunkel, dezent */
+.pc-col--a{background:#43321e;color:#fff} /* Starter (dunkles Bronze) */
+.pc-col--b{background:#474a50;color:#fff} /* Business (dunkles Silber) */
+.pc-col--c{background:#53441c;color:#fff} /* Pro (dunkles Gold) */
+
+/* Feature-Spalte: weiß, ohne Icons – nur feiner Balken links */
 .pc-feature{
-  color:#fff; text-align:left; cursor:pointer; user-select:none;
-  position:relative; background:linear-gradient(180deg, rgba(255,255,255,.02), transparent);
+  color:#fff; text-align:left; cursor:pointer; user-select:none; position:relative;
+  background:linear-gradient(180deg, rgba(255,255,255,.02), transparent);
 }
-/* schlanker Akzentbalken links (ersetzt den alten blauen Punkt) */
-.pc-feature::before{
-  content:""; position:absolute; left:0; top:0; bottom:0; width:3px;
-  background:linear-gradient(180deg, var(--accent), transparent);
-  opacity:.45; transition:opacity .2s ease;
-}
-.pc-row:hover .pc-feature::before{opacity:.9}
-
-/* kleine Caret-Anzeige rechts in der Zelle (zeigt Auf/Zu) */
-.pc-feature .caret{float:right; opacity:.7}
+.pc-feature::before{content:""; position:absolute; left:0; top:0; bottom:0; width:3px;
+  background:linear-gradient(180deg, var(--accent), transparent); opacity:.35; transition:opacity .2s ease}
+.pc-row:hover .pc-feature::before{opacity:.85}
+.pc-feature .caret{float:right; opacity:.55}
 
 /* Werte-Zellen mittig */
 .pc-row .pc-cell:not(.pc-feature){display:flex;align-items:center;justify-content:center;text-align:center}
 
-/* Inline-Detailzeile – Animation verlangsamt (0.6s) */
-.pc-detail{grid-column:1 / -1;max-height:0;overflow:hidden;border-bottom:1px solid var(--border);
-  background:linear-gradient(180deg, rgba(89,182,255,.05), rgba(255,255,255,.01));opacity:.2;
-  transition:max-height .6s ease, opacity .6s ease;}
-.pc-detail__inner{padding:14px 14px 18px}
-.pc-detail--open{max-height:240px;opacity:1}
+/* Detailzeile – langsames Öffnen (.9s), schnelles Schließen (.45s) */
+.pc-detail{
+  grid-column:1 / -1; max-height:0; overflow:hidden; border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg, rgba(89,182,255,.05), rgba(255,255,255,.01)); opacity:.2;
+  transition:max-height .9s ease, opacity .9s ease;
+}
+.pc-detail.shrink{transition-duration:.45s} /* beim Schließen flotter */
+.pc-detail__inner{padding:12px 14px 16px; color:var(--muted); font-size:.92rem; max-width:78ch}
+.pc-detail--open{max-height:240px; opacity:1}
 
 .pc-section{background:rgba(255,255,255,.02);font-weight:800}
-.tick{font-weight:900;font-size:1.1rem;color:var(--ok)}
+.tick{font-weight:900;font-size:1.05rem;color:var(--ok)}
 .dash{color:var(--muted)}
 .pc-total .pc-cell{background:#101828;font-weight:800}
 
 /* ---------------------------------------------------------
-   Add-on Controls (eigene Stepper + animierte Checkboxen)
+   Add-ons – eigener Stepper + Checkbox-Animation
    --------------------------------------------------------- */
-
-/* Stepper (kein Tippen möglich) */
-.stepper{display:inline-flex;align-items:center;gap:10px;background:#0c1320;border:1px solid var(--border);border-radius:12px;padding:6px 10px}
+/* Stepper: kein Tippen, nur ▴ / ▾ */
+.stepper{display:inline-flex;align-items:center;gap:10px;background:#0c1320;border:1px solid var(--border);border-radius:12px;padding:6px 10px;user-select:none}
 .stepper .value{min-width:34px;text-align:center;font-weight:800}
 .stepper button{
   width:26px;height:26px;border:1px solid var(--border);background:var(--soft);
@@ -110,10 +104,9 @@ h2{font-size:clamp(1.6rem,1.2vw + 1rem,2.2rem)}
   transition:transform .12s ease, background .12s ease
 }
 .stepper button:active{transform:translateY(1px)}
-.stepper .up::before{content:"▴"}
-.stepper .down::before{content:"▾"}
+.stepper .up::before{content:"▴"} .stepper .down::before{content:"▾"}
 
-/* Custom Checkbox mit animiertem Häkchen */
+/* Checkbox animiert */
 .check{display:inline-grid;place-items:center}
 .check input{position:absolute;inset:0;opacity:0}
 .check .box{
@@ -128,7 +121,7 @@ h2{font-size:clamp(1.6rem,1.2vw + 1rem,2.2rem)}
 .check input:checked + .box{border-color:var(--ok);box-shadow:0 0 0 4px rgba(142,229,155,.12) inset}
 .check input:checked + .box::after{transform:rotate(45deg) scale(1)}
 
-/* SERVICES – Karten + Accordion */
+/* SERVICE-Karten + Accordion */
 .service-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .service-card{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));border:1px solid var(--border);border-radius:18px;padding:20px;box-shadow:var(--shadow)}
 .service-card h3{margin:0}
@@ -149,8 +142,7 @@ h2{font-size:clamp(1.6rem,1.2vw + 1rem,2.2rem)}
 .legal{padding:14px 0;color:var(--muted);text-align:center;border-top:1px solid var(--border)}
 
 /* =========================================================
-   REVEAL / MOTION – wiederholbar: class wird beim Scrollen
-   gesetzt/entfernt (kein unobserve)
+   REVEAL – wiederholbar (rein: add, raus: remove)
    ========================================================= */
 @media (prefers-reduced-motion:no-preference){
   [data-reveal]{opacity:0;transform:translateY(18px) scale(.98);filter:saturate(.9);transition:opacity .6s ease, transform .6s ease, filter .6s ease}
@@ -158,11 +150,17 @@ h2{font-size:clamp(1.6rem,1.2vw + 1rem,2.2rem)}
 }
 
 /* =========================================================
-   BACKGROUND CANVAS (Partikel + Linien)
+   BACKGROUND CANVAS (Partikel-Netz)
    ========================================================= */
 #bgfx{position:fixed;inset:0;z-index:-1;pointer-events:none;background:
   radial-gradient(1000px 400px at -10% -20%, rgba(89,182,255,.12), transparent 70%),
   radial-gradient(800px 300px at 120% 0%, rgba(126,210,255,.10), transparent 70%);
+}
+
+/* Kleinere Screens – Typo kompakter, Zellen enger */
+@media (max-width:560px){
+  .pc-row>.pc-cell{padding:12px 10px}
+  .pc-detail__inner{font-size:.88rem}
 }
 </style>
 </head>
@@ -173,7 +171,7 @@ h2{font-size:clamp(1.6rem,1.2vw + 1rem,2.2rem)}
 <header class="header">
   <div class="container nav">
     <a class="brand" href="#top"><span class="brand-badge">C4</span><span>Creative4design</span></a>
-    <nav class="menu"><a href="#preise" class="btn">Preise</a></nav>
+    <nav class="menu"><a href="#preise">Preise</a><a href="#services">Service</a><a href="#kontakt">Kontakt</a></nav>
   </div>
 </header>
 
@@ -184,7 +182,7 @@ h2{font-size:clamp(1.6rem,1.2vw + 1rem,2.2rem)}
       <div data-reveal>
         <span class="badge">Websites, die verkaufen</span>
         <h1>Modernes Webdesign mit <span style="color:var(--accent)">Performance</span> & <span style="color:var(--accent2)">Klarheit</span>.</h1>
-        <p class="muted">Starter, Business oder Pro – inkl. SEO-Setup und DSGVO-Basics.</p>
+        <p class="muted">Starter, Business oder Pro – inkl. SEO-Setup & DSGVO-Basics.</p>
       </div>
       <div data-reveal>
         <div class="card">
@@ -203,7 +201,7 @@ h2{font-size:clamp(1.6rem,1.2vw + 1rem,2.2rem)}
       <h2>Paketvergleich</h2>
       <p class="muted small">Tippe auf eine Leistung, um Details einzublenden. Auf Mobil kannst du die Tabelle seitlich scrollen.</p>
 
-      <div class="table-wrap"><!-- responsive scroll container -->
+      <div class="table-wrap">
         <div class="pricing__table" role="table" aria-label="Preisvergleich">
 
           <!-- Kopf -->
@@ -218,175 +216,193 @@ h2{font-size:clamp(1.6rem,1.2vw + 1rem,2.2rem)}
           <div class="pc-row pc-section"><div class="pc-cell pc-feature">Fundament & Architektur</div><div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell"></div></div>
 
           <div class="pc-row">
-            <button class="pc-cell pc-feature" aria-expanded="false">Design/CMS <span class="caret">▾</span></button>
+            <div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Design/CMS <span class="caret">▾</span></div>
             <div class="pc-cell">WordPress</div><div class="pc-cell">WordPress</div><div class="pc-cell">Maßgeschneidertes&nbsp;Design</div>
-          </div><div class="pc-detail"><div class="pc-detail__inner muted small">WP in Starter/Business – Pro ohne Theme für maximale Performance.</div></div>
+          </div>
+          <div class="pc-detail"><div class="pc-detail__inner">WP in Starter/Business – Pro ohne Theme für maximale Performance und volle Design-Freiheit.</div></div>
 
           <div class="pc-row">
-            <button class="pc-cell pc-feature" aria-expanded="false">Seitenanzahl <span class="caret">▾</span></button>
+            <div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Seitenanzahl <span class="caret">▾</span></div>
             <div class="pc-cell">3</div><div class="pc-cell">6</div><div class="pc-cell">18</div>
-          </div><div class="pc-detail"><div class="pc-detail__inner muted small">Typischer Umfang für kleine/mittlere/große Auftritte.</div></div>
+          </div>
+          <div class="pc-detail"><div class="pc-detail__inner">Typischer Umfang für kleine/mittlere/große Auftritte.</div></div>
 
           <div class="pc-row">
-            <button class="pc-cell pc-feature" aria-expanded="false">Layoutschleifen <span class="caret">▾</span></button>
+            <div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Layoutschleifen <span class="caret">▾</span></div>
             <div class="pc-cell">2</div><div class="pc-cell">3</div><div class="pc-cell">4</div>
-          </div><div class="pc-detail"><div class="pc-detail__inner muted small">Korrekturen je Phase.</div></div>
+          </div>
+          <div class="pc-detail"><div class="pc-detail__inner">Korrekturen je Phase.</div></div>
 
           <!-- FUNKTIONEN -->
           <div class="pc-row pc-section"><div class="pc-cell pc-feature">Conversion & Funktionen</div><div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell"></div></div>
 
           <div class="pc-row">
-            <button class="pc-cell pc-feature" aria-expanded="false">Kontaktformular <span class="caret">▾</span></button>
+            <div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Kontaktformular <span class="caret">▾</span></div>
             <div class="pc-cell">1</div><div class="pc-cell">2</div><div class="pc-cell">unbegrenzt</div>
-          </div><div class="pc-detail"><div class="pc-detail__inner muted small">Spam-Schutz, DSGVO-Hinweis & Erfolgsmeldung.</div></div>
+          </div>
+          <div class="pc-detail"><div class="pc-detail__inner">Spam-Schutz, DSGVO-Hinweis & Erfolgsmeldung.</div></div>
 
           <div class="pc-row">
-            <button class="pc-cell pc-feature" aria-expanded="false">Einbettungen (iFrame/Preisliste/Widgets) <span class="caret">▾</span></button>
+            <div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Einbettungen (iFrame/Preisliste/Widgets) <span class="caret">▾</span></div>
             <div class="pc-cell">1</div><div class="pc-cell">3</div><div class="pc-cell">unbegrenzt</div>
-          </div><div class="pc-detail"><div class="pc-detail__inner muted small">z. B. Buchung, Karte, Trust-Widgets.</div></div>
+          </div>
+          <div class="pc-detail"><div class="pc-detail__inner">z. B. Buchung, Karte, Trust-Widgets.</div></div>
 
           <div class="pc-row">
-            <button class="pc-cell pc-feature" aria-expanded="false">Download-Material (.zip/.pdf/.jpg) <span class="caret">▾</span></button>
+            <div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Download-Material (.zip/.pdf/.jpg) <span class="caret">▾</span></div>
             <div class="pc-cell">3</div><div class="pc-cell">6</div><div class="pc-cell">18</div>
-          </div><div class="pc-detail"><div class="pc-detail__inner muted small">Broschüren, Datenblätter & Co.</div></div>
+          </div>
+          <div class="pc-detail"><div class="pc-detail__inner">Broschüren, Datenblätter & Co.</div></div>
 
           <!-- MEDIEN -->
           <div class="pc-row pc-section"><div class="pc-cell pc-feature">Content & Medien</div><div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell"></div></div>
 
           <div class="pc-row">
-            <button class="pc-cell pc-feature" aria-expanded="false">Bilderanzahl <span class="caret">▾</span></button>
+            <div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Bilderanzahl <span class="caret">▾</span></div>
             <div class="pc-cell">10</div><div class="pc-cell">30</div><div class="pc-cell">80</div>
-          </div><div class="pc-detail"><div class="pc-detail__inner muted small">Optimiert & komprimiert inkl. Alt-Texten.</div></div>
+          </div>
+          <div class="pc-detail"><div class="pc-detail__inner">Optimiert & komprimiert inkl. Alt-Texten.</div></div>
 
           <div class="pc-row">
-            <button class="pc-cell pc-feature" aria-expanded="false">Galerie <span class="caret">▾</span></button>
+            <div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Galerie <span class="caret">▾</span></div>
             <div class="pc-cell">Lightbox</div><div class="pc-cell">Diashow</div><div class="pc-cell">Diashow</div>
-          </div><div class="pc-detail"><div class="pc-detail__inner muted small">Referenzen/Portfolio.</div></div>
+          </div>
+          <div class="pc-detail"><div class="pc-detail__inner">Referenzen/Portfolio.</div></div>
 
           <div class="pc-row">
-            <button class="pc-cell pc-feature" aria-expanded="false">Video-Integration <span class="caret">▾</span></button>
+            <div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Video-Integration <span class="caret">▾</span></div>
             <div class="pc-cell">1</div><div class="pc-cell">6</div><div class="pc-cell">12</div>
-          </div><div class="pc-detail"><div class="pc-detail__inner muted small">YouTube/Vimeo – DSGVO-freundlich.</div></div>
+          </div>
+          <div class="pc-detail"><div class="pc-detail__inner">YouTube/Vimeo – DSGVO-freundlich.</div></div>
 
           <div class="pc-row">
-            <button class="pc-cell pc-feature" aria-expanded="false">Startseiten Header Slider <span class="caret">▾</span></button>
+            <div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Startseiten Header Slider <span class="caret">▾</span></div>
             <div class="pc-cell">1</div><div class="pc-cell">2</div><div class="pc-cell">3</div>
-          </div><div class="pc-detail"><div class="pc-detail__inner muted small">Nur bei echtem Mehrwert; sonst statischer Hero empfohlen.</div></div>
+          </div>
+          <div class="pc-detail"><div class="pc-detail__inner">Nur bei echtem Mehrwert.</div></div>
 
           <div class="pc-row">
-            <button class="pc-cell pc-feature" aria-expanded="false">Animationen / Mikro-Interaktionen <span class="caret">▾</span></button>
+            <div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Animationen / Mikro-Interaktionen <span class="caret">▾</span></div>
             <div class="pc-cell">Classic</div><div class="pc-cell">Premium</div><div class="pc-cell">Deluxe</div>
-          </div><div class="pc-detail"><div class="pc-detail__inner muted small">Hover/Scroll bis komplexe Motion.</div></div>
+          </div>
+          <div class="pc-detail"><div class="pc-detail__inner">Hover/Scroll bis komplexe Motion.</div></div>
 
           <!-- PFLICHT & SEO -->
           <div class="pc-row pc-section"><div class="pc-cell pc-feature">Pflicht, Sicherheit & SEO</div><div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell"></div></div>
 
-          <div class="pc-row"><button class="pc-cell pc-feature" aria-expanded="false">Migration/Launch <span class="caret">▾</span></button><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
-          <div class="pc-detail"><div class="pc-detail__inner muted small">DNS, Redirects, Tests & Go-Live-Checkliste.</div></div>
+          <div class="pc-row"><div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Migration/Launch <span class="caret">▾</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
+          <div class="pc-detail"><div class="pc-detail__inner">DNS, Redirects, Tests & Go-Live-Checkliste.</div></div>
 
-          <div class="pc-row"><button class="pc-cell pc-feature" aria-expanded="false">Domain & Hosting Einrichtung <span class="caret">▾</span></button><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
-          <div class="pc-detail"><div class="pc-detail__inner muted small">Setup, E-Mail-Routing (SPF/DKIM), SSL/TLS.</div></div>
+          <div class="pc-row"><div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Domain & Hosting Einrichtung <span class="caret">▾</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
+          <div class="pc-detail"><div class="pc-detail__inner">Setup, E-Mail-Routing (SPF/DKIM), SSL/TLS.</div></div>
 
-          <div class="pc-row"><button class="pc-cell pc-feature" aria-expanded="false">SSL/TLS-Zertifikat (HTTPS) <span class="caret">▾</span></button><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
-          <div class="pc-detail"><div class="pc-detail__inner muted small">Sichere Verbindung & SEO-Signal.</div></div>
+          <div class="pc-row"><div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">SSL/TLS-Zertifikat (HTTPS) <span class="caret">▾</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
+          <div class="pc-detail"><div class="pc-detail__inner">Sichere Verbindung & SEO-Signal.</div></div>
 
-          <div class="pc-row"><button class="pc-cell pc-feature" aria-expanded="false">Cookie-Consent/CMP <span class="caret">▾</span></button><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
-          <div class="pc-detail"><div class="pc-detail__inner muted small">Rechtskonformes Banner inkl. Logs.</div></div>
+          <div class="pc-row"><div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Cookie-Consent/CMP <span class="caret">▾</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
+          <div class="pc-detail"><div class="pc-detail__inner">Rechtskonformes Banner inkl. Logs.</div></div>
 
-          <div class="pc-row"><button class="pc-cell pc-feature" aria-expanded="false">Impressum, Datenschutz (DSGVO) & AGB <span class="caret">▾</span></button><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
-          <div class="pc-detail"><div class="pc-detail__inner muted small">Pflichtangaben & Richtlinien.</div></div>
+          <div class="pc-row"><div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Impressum, Datenschutz (DSGVO) & AGB <span class="caret">▾</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
+          <div class="pc-detail"><div class="pc-detail__inner">Pflichtangaben & Richtlinien.</div></div>
 
-          <div class="pc-row"><button class="pc-cell pc-feature" aria-expanded="false">Responsives Design <span class="caret">▾</span></button><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
-          <div class="pc-detail"><div class="pc-detail__inner muted small">Optimiert für Mobile, Tablet & Desktop.</div></div>
+          <div class="pc-row"><div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Responsives Design <span class="caret">▾</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
+          <div class="pc-detail"><div class="pc-detail__inner">Optimiert für Mobile, Tablet & Desktop.</div></div>
 
-          <div class="pc-row"><button class="pc-cell pc-feature" aria-expanded="false">Navigation <span class="caret">▾</span></button><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
-          <div class="pc-detail"><div class="pc-detail__inner muted small">Klare Struktur, schnelle Wege.</div></div>
+          <div class="pc-row"><div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Navigation <span class="caret">▾</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
+          <div class="pc-detail"><div class="pc-detail__inner">Klare Struktur, schnelle Wege.</div></div>
 
-          <div class="pc-row"><button class="pc-cell pc-feature" aria-expanded="false">SEO-Setup Basis <span class="caret">▾</span></button><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
-          <div class="pc-detail"><div class="pc-detail__inner muted small">Title/Meta, robots.txt, Sitemap, Schema-Basics.</div></div>
+          <div class="pc-row"><div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">SEO-Setup Basis <span class="caret">▾</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
+          <div class="pc-detail"><div class="pc-detail__inner">Title/Meta, robots.txt, Sitemap, Schema-Basics.</div></div>
 
-          <div class="pc-row"><button class="pc-cell pc-feature" aria-expanded="false">Analytics (Plausible / GA4) <span class="caret">▾</span></button><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
-          <div class="pc-detail"><div class="pc-detail__inner muted small">Messung ab Tag 1 – DSGVO-freundlich.</div></div>
+          <div class="pc-row"><div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Analytics (Plausible / GA4) <span class="caret">▾</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
+          <div class="pc-detail"><div class="pc-detail__inner">Messung ab Tag 1 – DSGVO-freundlich.</div></div>
 
-          <div class="pc-row"><button class="pc-cell pc-feature" aria-expanded="false">Google-Maps Verknüpfung <span class="caret">▾</span></button><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
-          <div class="pc-detail"><div class="pc-detail__inner muted small">Standort & Route.</div></div>
+          <div class="pc-row"><div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Google-Maps Verknüpfung <span class="caret">▾</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
+          <div class="pc-detail"><div class="pc-detail__inner">Standort & Route.</div></div>
 
-          <div class="pc-row"><button class="pc-cell pc-feature" aria-expanded="false">Social-Media Verknüpfung <span class="caret">▾</span></button><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
-          <div class="pc-detail"><div class="pc-detail__inner muted small">Verlinkungen & OG-Daten.</div></div>
+          <div class="pc-row"><div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Social-Media Verknüpfung <span class="caret">▾</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
+          <div class="pc-detail"><div class="pc-detail__inner">Verlinkungen & OG-Daten.</div></div>
 
-          <div class="pc-row"><button class="pc-cell pc-feature" aria-expanded="false">E-Mail-Einrichtung <span class="caret">▾</span></button><div class="pc-cell"><span class="dash">–</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
-          <div class="pc-detail"><div class="pc-detail__inner muted small">Geschäftliche Adresse inkl. SPF/DKIM.</div></div>
+          <div class="pc-row"><div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">E-Mail-Einrichtung <span class="caret">▾</span></div><div class="pc-cell"><span class="dash">–</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
+          <div class="pc-detail"><div class="pc-detail__inner">Geschäftliche Adresse inkl. SPF/DKIM.</div></div>
 
-          <div class="pc-row"><button class="pc-cell pc-feature" aria-expanded="false">OpenStreetMap Standortkarte & PIN <span class="caret">▾</span></button><div class="pc-cell"><span class="dash">–</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
-          <div class="pc-detail"><div class="pc-detail__inner muted small">Trackingfreie Karten.</div></div>
+          <div class="pc-row"><div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">OpenStreetMap Standortkarte & PIN <span class="caret">▾</span></div><div class="pc-cell"><span class="dash">–</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
+          <div class="pc-detail"><div class="pc-detail__inner">Trackingfreie Karten.</div></div>
 
-          <div class="pc-row"><button class="pc-cell pc-feature" aria-expanded="false">Parallax-Effekt <span class="caret">▾</span></button><div class="pc-cell"><span class="dash">–</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
-          <div class="pc-detail"><div class="pc-detail__inner muted small">Tiefe & Dynamik – performant umgesetzt.</div></div>
+          <div class="pc-row"><div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Parallax-Effekt <span class="caret">▾</span></div><div class="pc-cell"><span class="dash">–</span></div><div class="pc-cell"><span class="tick">✓</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
+          <div class="pc-detail"><div class="pc-detail__inner">Tiefe & Dynamik – performant umgesetzt.</div></div>
 
-          <div class="pc-row"><button class="pc-cell pc-feature" aria-expanded="false">Blog / News <span class="caret">▾</span></button><div class="pc-cell"><span class="dash">–</span></div><div class="pc-cell"><span class="dash">–</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
-          <div class="pc-detail"><div class="pc-detail__inner muted small">Content-Hub für SEO & Updates.</div></div>
+          <div class="pc-row"><div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Blog / News <span class="caret">▾</span></div><div class="pc-cell"><span class="dash">–</span></div><div class="pc-cell"><span class="dash">–</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
+          <div class="pc-detail"><div class="pc-detail__inner">Content-Hub für SEO & Updates.</div></div>
 
-          <div class="pc-row"><button class="pc-cell pc-feature" aria-expanded="false">Datenbank-Anbindung <span class="caret">▾</span></button><div class="pc-cell"><span class="dash">–</span></div><div class="pc-cell"><span class="dash">–</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
-          <div class="pc-detail"><div class="pc-detail__inner muted small">Portale, Buchungen, Mitgliederbereiche.</div></div>
+          <div class="pc-row"><div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Datenbank-Anbindung <span class="caret">▾</span></div><div class="pc-cell"><span class="dash">–</span></div><div class="pc-cell"><span class="dash">–</span></div><div class="pc-cell"><span class="tick">✓</span></div></div>
+          <div class="pc-detail"><div class="pc-detail__inner">Portale, Buchungen, Mitgliederbereiche.</div></div>
 
-          <!-- ZUBUCHBAR (mit Stepper/Checkboxen) -->
+          <!-- ZUBUCHBAR -->
           <div class="pc-row pc-section"><div class="pc-cell pc-feature">Zubuchbare Leistungen (optional)</div><div class="pc-cell"></div><div class="pc-cell"></div><div class="pc-cell"></div></div>
 
-          <!-- Icons: 0,3,6,9…  -> Preisformel: +100 € je 5 Icons -->
+          <!-- Icons -->
           <div class="pc-row">
-            <button class="pc-cell pc-feature" aria-expanded="false">Exklusives Icondesign <br><span class="muted small">100 € je 5 Icons</span> <span class="caret">▾</span></button>
+            <div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Exklusives Icondesign <br><span class="muted small">100 € je 5 Icons</span> <span class="caret">▾</span></div>
             <div class="pc-cell"><div class="stepper" id="icons-starter"  data-step="3"   data-min="0" data-value="0"></div></div>
             <div class="pc-cell"><div class="stepper" id="icons-business" data-step="3"   data-min="0" data-value="0"></div></div>
             <div class="pc-cell"><div class="stepper" id="icons-pro"      data-step="3"   data-min="0" data-value="0"></div></div>
-          </div><div class="pc-detail"><div class="pc-detail__inner muted small">Individuelle Piktogramme im Markenstil inkl. 1 Korrektur.</div></div>
+          </div>
+          <div class="pc-detail"><div class="pc-detail__inner">Individuelle Piktogramme inkl. 1 Korrektur.</div></div>
 
-          <!-- Sprachen: 0,1,2,3…  -> +200 €/Sprache -->
+          <!-- Sprachen -->
           <div class="pc-row">
-            <button class="pc-cell pc-feature" aria-expanded="false">Mehrsprachigkeit <br><span class="muted small">je Sprache 200 €</span> <span class="caret">▾</span></button>
+            <div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Mehrsprachigkeit <br><span class="muted small">je Sprache 200 €</span> <span class="caret">▾</span></div>
             <div class="pc-cell"><div class="stepper" id="lang-starter"  data-step="1"   data-min="0" data-value="0"></div></div>
             <div class="pc-cell"><div class="stepper" id="lang-business" data-step="1"   data-min="0" data-value="0"></div></div>
             <div class="pc-cell"><div class="stepper" id="lang-pro"      data-step="1"   data-min="0" data-value="0"></div></div>
-          </div><div class="pc-detail"><div class="pc-detail__inner muted small">Duplizieren & Lokalisieren der Seiten inkl. Switcher.</div></div>
+          </div>
+          <div class="pc-detail"><div class="pc-detail__inner">Duplizieren & Lokalisieren inkl. Sprachumschalter.</div></div>
 
-          <!-- Fonts (Checkbox animiert) -->
+          <!-- Fonts -->
           <div class="pc-row">
-            <button class="pc-cell pc-feature" aria-expanded="false">Exklusive Schriftarten <br><span class="muted small">ab 120 €</span> <span class="caret">▾</span></button>
+            <div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Exklusive Schriftarten <br><span class="muted small">ab 120 €</span> <span class="caret">▾</span></div>
             <div class="pc-cell"><label class="check"><input type="checkbox" class="addon-check" data-price="120" id="fonts-starter"><span class="box"></span></label></div>
             <div class="pc-cell"><label class="check"><input type="checkbox" class="addon-check" data-price="120" id="fonts-business"><span class="box"></span></label></div>
             <div class="pc-cell"><label class="check"><input type="checkbox" class="addon-check" data-price="120" id="fonts-pro"><span class="box"></span></label></div>
-          </div><div class="pc-detail"><div class="pc-detail__inner muted small">Lizenz & Einbindung (WOFF/WOFF2).</div></div>
+          </div>
+          <div class="pc-detail"><div class="pc-detail__inner">Lizenzprüfung & Einbindung (WOFF/WOFF2).</div></div>
 
-          <!-- Texte: 0,300,600…  (Wert = €) -->
+          <!-- Texte -->
           <div class="pc-row">
-            <button class="pc-cell pc-feature" aria-expanded="false">Professionelle Texte <br><span class="muted small">100 € je 300 Wörter</span> <span class="caret">▾</span></button>
+            <div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Professionelle Texte <br><span class="muted small">100 € je 300 Wörter</span> <span class="caret">▾</span></div>
             <div class="pc-cell"><div class="stepper" id="text-starter"  data-step="300" data-min="0" data-value="0"></div></div>
             <div class="pc-cell"><div class="stepper" id="text-business" data-step="300" data-min="0" data-value="0"></div></div>
             <div class="pc-cell"><div class="stepper" id="text-pro"      data-step="300" data-min="0" data-value="0"></div></div>
-          </div><div class="pc-detail"><div class="pc-detail__inner muted small">Suchintention, Tonalität, interne Verlinkung.</div></div>
+          </div>
+          <div class="pc-detail"><div class="pc-detail__inner">Suchintention, Tonalität, interne Verlinkung.</div></div>
 
-          <!-- A11y (Checkbox) -->
+          <!-- A11y -->
           <div class="pc-row">
-            <button class="pc-cell pc-feature" aria-expanded="false">Barrierefreiheit (WCAG 2.1) <br><span class="muted small">ab 400 €</span> <span class="caret">▾</span></button>
+            <div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Barrierefreiheit (WCAG 2.1) <br><span class="muted small">ab 400 €</span> <span class="caret">▾</span></div>
             <div class="pc-cell"><label class="check"><input type="checkbox" class="addon-check" data-price="400" id="a11y-starter"><span class="box"></span></label></div>
             <div class="pc-cell"><label class="check"><input type="checkbox" class="addon-check" data-price="400" id="a11y-business"><span class="box"></span></label></div>
             <div class="pc-cell"><label class="check"><input type="checkbox" class="addon-check" data-price="400" id="a11y-pro"><span class="box"></span></label></div>
-          </div><div class="pc-detail"><div class="pc-detail__inner muted small">Kontrast, Fokus, ARIA, Tastatur – Basic-Audit & Fixes.</div></div>
+          </div>
+          <div class="pc-detail"><div class="pc-detail__inner">Kontrast, Fokus, ARIA, Tastatur – Basic-Audit & Fixes.</div></div>
 
-          <!-- Schnittstellen: 0,150,300… (Wert = €) -->
+          <!-- Schnittstellen -->
           <div class="pc-row">
-            <button class="pc-cell pc-feature" aria-expanded="false">Schnittstellen/CRM-Anbindung <br><span class="muted small">pro Schnittstelle 150 €</span> <span class="caret">▾</span></button>
+            <div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Schnittstellen/CRM-Anbindung <br><span class="muted small">pro Schnittstelle 150 €</span> <span class="caret">▾</span></div>
             <div class="pc-cell"><div class="stepper" id="api-starter"  data-step="150" data-min="0" data-value="0"></div></div>
             <div class="pc-cell"><div class="stepper" id="api-business" data-step="150" data-min="0" data-value="0"></div></div>
             <div class="pc-cell"><div class="stepper" id="api-pro"      data-step="150" data-min="0" data-value="0"></div></div>
-          </div><div class="pc-detail"><div class="pc-detail__inner muted small">z. B. HubSpot, Pipedrive, Mailchimp, Payment.</div></div>
+          </div>
+          <div class="pc-detail"><div class="pc-detail__inner">z. B. HubSpot, Pipedrive, Mailchimp, Payment.</div></div>
 
-          <!-- Kundenbereich (Checkbox) -->
+          <!-- Kundenbereich -->
           <div class="pc-row">
-            <button class="pc-cell pc-feature" aria-expanded="false">Kundenbereich <br><span class="muted small">ab 500 €</span> <span class="caret">▾</span></button>
+            <div class="pc-cell pc-feature" role="button" tabindex="0" aria-expanded="false">Kundenbereich <br><span class="muted small">ab 500 €</span> <span class="caret">▾</span></div>
             <div class="pc-cell"><label class="check"><input type="checkbox" class="addon-check" data-price="500" id="kb-starter"><span class="box"></span></label></div>
             <div class="pc-cell"><label class="check"><input type="checkbox" class="addon-check" data-price="500" id="kb-business"><span class="box"></span></label></div>
             <div class="pc-cell"><label class="check"><input type="checkbox" class="addon-check" data-price="500" id="kb-pro"><span class="box"></span></label></div>
-          </div><div class="pc-detail"><div class="pc-detail__inner muted small">Login-Bereiche, Downloads, geschützte Seiten.</div></div>
+          </div>
+          <div class="pc-detail"><div class="pc-detail__inner">Login-Bereiche, Downloads, geschützte Seiten.</div></div>
 
           <!-- Preise -->
           <div class="pc-row pc-total">
@@ -400,11 +416,11 @@ h2{font-size:clamp(1.6rem,1.2vw + 1rem,2.2rem)}
     </div>
   </section>
 
-  <!-- SERVICE (neues Layout) -->
+  <!-- SERVICE -->
   <section id="services" class="section">
     <div class="container" data-reveal>
       <h2>Wartung & Service</h2>
-      <p class="muted small">Zuverlässige Pflege, Backups und Support. Classic oder Premium – mit Details im aufklappbaren Bereich.</p>
+      <p class="muted small">Zuverlässige Pflege, Backups und Support. Classic oder Premium.</p>
 
       <div class="service-grid">
         <div class="service-card">
@@ -432,7 +448,6 @@ h2{font-size:clamp(1.6rem,1.2vw + 1rem,2.2rem)}
         </div>
       </div>
 
-      <!-- Zusatzinfos als Accordion -->
       <div class="acc">
         <div class="acc-item">
           <button class="acc-btn">Was umfasst der DSGVO-Service?</button>
@@ -444,7 +459,7 @@ h2{font-size:clamp(1.6rem,1.2vw + 1rem,2.2rem)}
         </div>
         <div class="acc-item">
           <button class="acc-btn">Was ist Performance-Optimierung?</button>
-          <div class="acc-panel"><div class="card" style="margin:8px 0 14px;padding:14px">Core Web Vitals-Feinschliff, Bildpipelines, Caching.</div></div>
+          <div class="acc-panel"><div class="card" style="margin:8px 0 14px;padding:14px">Core-Web-Vitals-Feinschliff, Bildpipelines, Caching.</div></div>
         </div>
       </div>
     </div>
@@ -462,7 +477,7 @@ h2{font-size:clamp(1.6rem,1.2vw + 1rem,2.2rem)}
         <label>Firma (optional)<input name="company" class="addon-number" style="width:100%"></label>
         <label style="grid-column:1/-1">Nachricht<textarea name="message" required class="addon-number" style="width:100%;min-height:160px"></textarea></label>
         <div style="grid-column:1/-1;display:flex;gap:12px;align-items:center">
-          <button class="btn" type="submit">Nachricht senden</button>
+          <button class="menu a" type="submit" style="padding:12px 16px;border-radius:12px;border:1px solid var(--border);background:transparent;color:var(--text)">Nachricht senden</button>
           <span class="small muted">Versand per Mail-Client. Auf Wunsch später mit Formspree/Netlify.</span>
         </div>
       </form>
@@ -481,7 +496,7 @@ h2{font-size:clamp(1.6rem,1.2vw + 1rem,2.2rem)}
 
 <script>
 /* =========================================================
-   REVEALS: wiederholt beim Scrollen (rein -> add, raus -> remove)
+   REVEALS – wiederholt (rein add, raus remove)
    ========================================================= */
 (() => {
   const nodes = document.querySelectorAll('[data-reveal]');
@@ -498,18 +513,30 @@ h2{font-size:clamp(1.6rem,1.2vw + 1rem,2.2rem)}
 })();
 
 /* =========================================================
-   INLINE-DETAILS (Pricing): Auf-/Zuklappen mit langsamerer Animation
+   INLINE-DETAILS: langsam öffnen, schnell schließen
    ========================================================= */
 (() => {
   const table = document.querySelector('.pricing__table');
-  table.addEventListener('click', e=>{
-    const btn = e.target.closest('.pc-feature'); if(!btn) return;
-    const row = btn.parentElement;
-    const detail = row.nextElementSibling;
-    if(!detail || !detail.classList.contains('pc-detail')) return;
+  const toggle = (detail) => {
+    const open = detail.classList.contains('pc-detail--open');
+    // Schließen schneller
+    detail.classList.toggle('shrink', open);
     detail.classList.toggle('pc-detail--open');
-    btn.querySelector('.caret')?.classList.toggle('rot');
-    btn.setAttribute('aria-expanded', detail.classList.contains('pc-detail--open') ? 'true' : 'false');
+  };
+  const handle = (el) => {
+    const row = el.parentElement;
+    const detail = row.nextElementSibling;
+    if(detail && detail.classList.contains('pc-detail')) toggle(detail);
+  };
+  table.addEventListener('click', e=>{
+    const el = e.target.closest('.pc-feature'); if(!el) return;
+    handle(el);
+  });
+  // Tastatur-Zugänglichkeit
+  table.addEventListener('keydown', e=>{
+    if((e.key==='Enter'||e.key===' ') && e.target.classList.contains('pc-feature')){
+      e.preventDefault(); handle(e.target);
+    }
   });
 })();
 
@@ -521,7 +548,7 @@ document.querySelectorAll('.acc-btn').forEach(b=>{
 });
 
 /* =========================================================
-   KONTAKT (mailto)
+   MAILTO Formular
    ========================================================= */
 document.getElementById('contact-form')?.addEventListener('submit', e=>{
   e.preventDefault();
@@ -532,11 +559,9 @@ document.getElementById('contact-form')?.addEventListener('submit', e=>{
 });
 
 /* =========================================================
-   ADD-ON: eigene STEPper (Icons/Sprachen/Texte/Schnittstellen)
-   – Kein Tippen möglich, nur eigene Pfeile ▴ / ▾
+   STEPper (eigene Pfeile ▴ ▾) – kein Tippen
    ========================================================= */
 function initStepper(el){
-  // UI zusammenbauen
   el.innerHTML = `<button class="down" type="button" aria-label="Verringern"></button>
                   <span class="value">0</span>
                   <button class="up" type="button" aria-label="Erhöhen"></button>`;
@@ -545,23 +570,19 @@ function initStepper(el){
   const valueNode=el.querySelector('.value');
   const setVal=v=>{ value=Math.max(min, v); valueNode.textContent=value; el.dataset.value=String(value); renderTotals(); };
   setVal(value);
-  el.querySelector('.up').addEventListener('click',()=>setVal(value+step));
-  el.querySelector('.down').addEventListener('click',()=>setVal(value-step));
+  el.querySelector('.up').addEventListener('click', e=>{ e.stopPropagation(); setVal(value+step); });
+  el.querySelector('.down').addEventListener('click', e=>{ e.stopPropagation(); setVal(value-step); });
 }
 document.querySelectorAll('.stepper').forEach(initStepper);
 
-/* Checkbox-Änderungen: Totals neu berechnen */
+/* Checkbox-Änderungen + Click stoppen (kein Scroll-Jump) */
 document.querySelectorAll('.addon-check').forEach(ch=>{
+  ch.addEventListener('click', e=>e.stopPropagation());
   ch.addEventListener('change',renderTotals);
 });
 
 /* =========================================================
-   SUMMEN berechnen
-   Icons: 100 € je 5 Icons  (Wert = Anzahl Icons, Schritt = 3)
-   Sprachen: 200 €/Stk.    (Wert = Anzahl)
-   Texte: Wert = € in 300er Schritten
-   Schnittstellen: Wert = € in 150er Schritten
-   Fonts/A11y/Kundenbereich: Checkbox mit data-price
+   SUMMEN
    ========================================================= */
 const BASE={starter:999,business:1799,pro:4999};
 const out={
@@ -570,89 +591,59 @@ const out={
   pro:document.getElementById('total-pro')
 };
 const euro=n=>new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n).replace(',00','');
-
-function stepVal(id){ const el=document.getElementById(id); return el ? (+el.dataset.value||0) : 0; }
+const stepVal=id=>{ const el=document.getElementById(id); return el ? (+el.dataset.value||0) : 0; };
 
 function calc(pkg){
   let sum=BASE[pkg];
-
-  // Icons -> +100 € je 5 Icons
-  const icons = stepVal(`icons-${pkg}`);
-  sum += Math.floor(icons/5)*100;
-
+  // Icons -> +100 € je 5 Icons (Wert = Anzahl Icons)
+  const icons=stepVal(`icons-${pkg}`); sum += Math.floor(icons/5)*100;
   // Sprachen -> +200 €/Stk.
-  const lang = stepVal(`lang-${pkg}`);
-  sum += lang*200;
-
-  // Texte -> Wert selbst ist € (0,300,600,…)
+  const lang=stepVal(`lang-${pkg}`); sum += lang*200;
+  // Texte -> Wert = € (0,300,600,…)
   sum += stepVal(`text-${pkg}`);
-
-  // Schnittstellen -> Wert ist € (0,150,300,…)
+  // Schnittstellen -> Wert = € (0,150,300,…)
   sum += stepVal(`api-${pkg}`);
-
   // Checkbox-Addons
-  ['fonts','a11y','kb'].forEach(key=>{
-    const el=document.getElementById(`${key}-${pkg}`);
-    if(el?.checked) sum+=+(el.dataset.price||0);
+  ['fonts','a11y','kb'].forEach(k=>{
+    const el=document.getElementById(`${k}-${pkg}`); if(el?.checked) sum+=+(el.dataset.price||0);
   });
-
   return sum;
 }
-function renderTotals(){
-  ['starter','business','pro'].forEach(pkg=>{
-    out[pkg].textContent=euro(calc(pkg));
-  });
-}
+function renderTotals(){ ['starter','business','pro'].forEach(p=>{ out[p].textContent=euro(calc(p)); }); }
 renderTotals();
 
 /* =========================================================
-   BACKGROUND CANVAS – Partikel fliegen, Linien zwischen
-   nahen Punkten (Opacity steigt bei Nähe)
+   Hintergrund-Canvas – Partikel fliegen, Linien bei Nähe
    ========================================================= */
 (function(){
-  const canvas=document.getElementById('bgfx');
-  const ctx=canvas.getContext('2d');
+  const canvas=document.getElementById('bgfx'); const ctx=canvas.getContext('2d');
   let w,h,particles=[];
   const COUNT=90, SPEED_MIN=.2, SPEED_MAX=1.4, LINK_DIST=140;
-
   function resize(){
     w=canvas.width=innerWidth; h=canvas.height=innerHeight;
     if(!particles.length){
       for(let i=0;i<COUNT;i++){
-        particles.push({
-          x:Math.random()*w, y:Math.random()*h,
-          vx:- (SPEED_MIN + Math.random()*(SPEED_MAX-SPEED_MIN)), // rechts -> links
-          vy:(Math.random()-.5)*.2, // leicht vertikal
-        });
+        particles.push({ x:Math.random()*w, y:Math.random()*h,
+          vx:- (SPEED_MIN + Math.random()*(SPEED_MAX-SPEED_MIN)),
+          vy:(Math.random()-.5)*.2 });
       }
     }
   }
   addEventListener('resize',resize); resize();
-
   function step(){
     ctx.clearRect(0,0,w,h);
-
-    // Punkte
     ctx.fillStyle='rgba(126,210,255,.9)';
     particles.forEach(p=>{
       p.x+=p.vx; p.y+=p.vy;
-      if(p.x<-10){ p.x=w+10; } // wrap
-      if(p.y<-10){ p.y=h+10; }
-      if(p.y>h+10){ p.y=-10; }
+      if(p.x<-10) p.x=w+10;
+      if(p.y<-10) p.y=h+10;
+      if(p.y>h+10) p.y=-10;
       ctx.beginPath(); ctx.arc(p.x,p.y,2,0,Math.PI*2); ctx.fill();
     });
-
-    // Linien (Opacity steigt bei Nähe)
     for(let i=0;i<particles.length;i++){
       for(let j=i+1;j<particles.length;j++){
-        const a=particles[i], b=particles[j];
-        const dx=a.x-b.x, dy=a.y-b.y;
-        const d=Math.hypot(dx,dy);
-        if(d<LINK_DIST){
-          const o=1 - (d/LINK_DIST); // näher = opaker
-          ctx.strokeStyle=`rgba(126,210,255,${o*.25})`;
-          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
-        }
+        const a=particles[i], b=particles[j], dx=a.x-b.x, dy=a.y-b.y, d=Math.hypot(dx,dy);
+        if(d<LINK_DIST){ const o=1-(d/LINK_DIST); ctx.strokeStyle=`rgba(126,210,255,${o*.25})`; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }
       }
     }
     requestAnimationFrame(step);
