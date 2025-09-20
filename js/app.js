@@ -1,4 +1,4 @@
-/* ===== Reveal (rein/raus) ===== */
+/* ===== Reveal (srein/raus) ===== */
 (() => {
   const els = document.querySelectorAll('[data-reveal]');
   if (matchMedia('(prefers-reduced-motion: reduce)').matches){
